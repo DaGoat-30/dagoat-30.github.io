@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stephen Curry Ultimate Fan Hub</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0f172a;
+      color: #f9fafb;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.light {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    header {
+      background: linear-gradient(135deg, #facc15, #f97316);
+      padding: 25px;
+      text-align: center;
+      color: #0f172a;
+    }
+
+    header img {
+      width: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 3px solid #0f172a;
+    }
+
+    nav {
+      background: #1e293b;
+      padding: 12px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #e2e8f0;
+      margin: 0 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    nav a:hover {
+      color: #facc15;
+    }
+
+    .hero {
+      padding: 25px 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      margin-bottom: 8px;
+    }
+
+    .container {
+      max-width: 1050px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 18px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      animation: fadeIn 0.8s ease;
+    }
+
+    body.light .card {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #facc15;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .gallery img {
+      width: 220px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    .mode-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: #facc15;
+      color: #0f172a;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      font-size: 0.9rem;
+    }
+
+    .btn {
+      background: #facc15;
+      color: #0f172a;
+      border: none;
+      padding: 7px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 6px;
+      font-size: 0.85rem;
+    }
+
+    .btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .input-small {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: none;
+      margin-right: 6px;
+      margin-top: 6px;
+      font-size: 0.85rem;
+    }
+
+    .leaderboard-list li {
+      margin: 4px 0;
+    }
+
+    .small-text {
+      font-size: 0.85rem;
+      color: #cbd5f5;
+    }
+
+    body.light .small-text {
+      color: #475569;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #020617;
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://i.imgur.com/8bZQZQv.png" alt="Curry Logo">
+    <h1>Stephen Curry Ultimate Fan Hub</h1>
+    <p>The Greatest Shooter Ever · News · Stats · Highlights · Fans</p>
+  </header>
+
+  <nav>
+    <a href="#news">News</a>
+    <a href="#highlights">Highlights</a>
+    <a href="#stats">Stats</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#timeline">Timeline</a>
+    <a href="#tracker">3PT Tracker</a>
+    <a href="#wallpapers">Wallpapers</a>
+    <a href="#leaderboard">Leaderboard</a>
+    <a href="#extras">Extras</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <h2>Locked in on every three, every record, every moment.</h2>
+    <p class="small-text">Site owner: Da Goat 🐐 · Refresh often, stay Curry‑pilled.</p>
+  </section>
+
+  <div class="container">
+
+    <div class="grid">
+
+      <!-- Live News -->
+      <div class="card" id="news">
+        <h3>Live Updates (Auto‑Refresh)</h3>
+        <p id="liveNews">Loading Curry news...</p>
+        <p class="small-text">Updates rotate every 5 seconds.</p>
+      </div>
+
+      <!-- Highlights -->
+      <div class="card" id="highlights">
+        <h3>Recent Highlights</h3>
+        <p>• 40‑point performance with 8 threes.</p>
+        <p>• Behind‑the‑back dime to Klay.</p>
+        <p>• Half‑court warm‑up shots still automatic.</p>
+        <p class="small-text">Add your own highlight text if you want.</p>
+      </div>
+
+      <!-- Stats -->
+      <div class="card" id="stats">
+        <h3>Season Stats (Demo)</h3>
+        <p>• PPG: 29.8</p>
+        <p>• APG: 6.3</p>
+        <p>• 3PT%: 42.7%</p>
+        <p>• Games Played: 12</p>
+        <p class="small-text">You can edit these numbers when the real season starts.</p>
+      </div>
+
+      <!-- Gallery -->
+      <div class="card" id="gallery">
+        <h3>Highlight Gallery</h3>
+        <div class="gallery">
+          <img src="https://i.imgur.com/5mQf7rM.jpeg" alt="Curry 1">
+          <img src="https://i.imgur.com/3m8xk0T.jpeg" alt="Curry 2">
+          <img src="https://i.imgur.com/0pJv1rQ.jpeg" alt="Curry 3">
+        </div>
+        <p class="small-text">You can swap these links for any Curry pics you like.</p>
+      </div>
+
+      <!-- Quiz -->
+      <div class="card" id="quiz">
+        <h3>Curry Fan Quiz</h3>
+        <p>Test how locked in you are 👀</p>
+        <ol>
+          <li>How many threes did Curry hit in his single‑game record?</li>
+          <li>Which team did the Warriors beat in the 2015 Finals?</li>
+          <li>What jersey number does Curry wear?</li>
+        </ol>
+        <button class="btn" onclick="showQuizAnswers()">Show Answers</button>
+        <p id="quizAnswers" style="margin-top:8px;"></p>
+      </div>
+
+      <!-- Timeline -->
+      <div class="card" id="timeline">
+        <h3>Curry Career Timeline</h3>
+        <p>• 2009 – Drafted by Golden State Warriors</p>
+        <p>• 2015 – First NBA Championship & MVP</p>
+        <p>• 2016 – Unanimous MVP, 73‑win season</p>
+        <p>• 2017–2018 – Back‑to‑back titles with KD</p>
+        <p>• 2022 – Finals MVP vs Celtics</p>
+        <p class="small-text">You can add more years as his story keeps going.</p>
+      </div>
+
+      <!-- 3PT Tracker -->
+      <div class="card" id="tracker">
+        <h3>3‑Pointer Tracker</h3>
+        <p>Track how many threes Curry hits in a game (your own count):</p>
+        <p>Threes this game: <span id="threeCount">0</span></p>
+        <button class="btn" onclick="addThree()">+1 Three</button>
+        <button class="btn" onclick="resetThree()">Reset</button>
+      </div>
+
+      <!-- Wallpapers -->
+      <div class="card" id="wallpapers">
+        <h3>Curry Wallpapers</h3>
+        <p>Right‑click → Save image to use as wallpaper.</p>
+        <div class="gallery">
+          <img src="https://i.imgur.com/5mQf7rM.jpeg" alt="Wallpaper 1">
+          <img src="https://i.imgur.com/3m8xk0T.jpeg" alt="Wallpaper 2">
+          <img src="https://i.imgur.com/0pJv1rQ.jpeg" alt="Wallpaper 3">
+        </div>
+      </div>
+
+      <!-- Leaderboard -->
+      <div class="card" id="leaderboard">
+        <h3>Curry Fan Leaderboard</h3>
+        <p>Add your name and your “Curry fan level” (1–100):</p>
+        <input class="input-small" id="fanName" placeholder="Your name">
+        <input class="input-small" id="fanLevel" type="number" min="1" max="100" placeholder="Level">
+        <button class="btn" onclick="addFan()">Add</button>
+        <ul id="leaderboardList" class="leaderboard-list"></ul>
+      </div>
+
+      <!-- Extras -->
+      <div class="card" id="extras">
+        <h3>Extras / Notes</h3>
+        <p>Ideas you can add later:</p>
+        <ul>
+          <li>Game log page with scores and threes.</li>
+          <li>Embed YouTube highlight playlist.</li>
+          <li>Polls: “Best Curry moment?”</li>
+          <li>Fan comments section (if your host allows it).</li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="card" id="contact">
+        <h3>Contact / Socials</h3>
+        <p>Instagram: @stephencurry30</p>
+        <p>Twitter/X: @StephenCurry30</p>
+        <p>Curry Brand: Under Armour</p>
+        <p>Site Owner: Da Goat 🐐</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Stephen Curry Ultimate Fan Hub · Built by Da Goat
+  </footer>
+
+  <div class="mode-btn" onclick="toggleMode()">Toggle Light/Dark</div>
+
+  <script>
+    // Light/Dark mode
+    function toggleMode() {
+      document.body.classList.toggle('light');
+    }
+
+    // Auto-refresh news (demo)
+    function refreshNews() {
+      const updates = [
+        "Curry working on new off-ball movement drills.",
+        "New Curry Brand shoes rumored for release.",
+        "Steph spotted training with rookies after practice.",
+        "Curry hosting charity event with Eat. Learn. Play.",
+        "Warriors preparing new offensive sets for Curry.",
+        "Curry locked in from deep during scrimmage.",
+        "Steph mentoring young guards at practice.",
+        "Curry fine-tuning his handle and footwork."
+      ];
+      document.getElementById("liveNews").innerText =
+        updates[Math.floor(Math.random() * updates.length)];
+    }
+    refreshNews();
+    setInterval(refreshNews, 5000);
+
+    // Quiz answers
+    function showQuizAnswers() {
+      document.getElementById("quizAnswers").innerText =
+        "Answers: 1) 13 threes  |  2) Cleveland Cavaliers  |  3) #30";
+    }
+
+    // 3PT tracker
+    let threeCount = 0;
+    function addThree() {
+      threeCount++;
+      document.getElementById("threeCount").innerText = threeCount;
+    }
+    function resetThree() {
+      threeCount = 0;
+      document.getElementById("threeCount").innerText = threeCount;
+    }
+
+    // Fan leaderboard
+    function addFan() {
+      const name = document.getElementById("fanName").value.trim();
+      const level = document.getElementById("fanLevel").value.trim();
+      if (!name || !level) return;
+      const li = document.createElement("li");
+      li.textContent = name + " — Curry Fan Level: " + level;
+      document.getElementById("leaderboardList").appendChild(li);
+      document.getElementById("fanName").value = "";
+      document.getElementById("fanLevel").value = "";
+    }
+  </script>
+
+</body>
+</html>
