@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3PT Tracker - Stephen Curry Ultimate Fan Hub</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: Arial, sans-serif; background:#305CDE; color:#f9fafb; transition:background 0.3s, color 0.3s; }
+    body.light { background:#f1f5f9; color:#0f172a; }
+    header { background:linear-gradient(135deg, #FFDD00, #0008A3); padding:25px; text-align:center; color:#0f172a; }
+    header img { width:120px; border-radius:50%; margin-bottom:10px; border:3px solid #0f172a; }
+    nav { background:#1e293b; padding:12px; text-align:center; position:sticky; top:0; z-index:10; overflow-x:auto; white-space:nowrap; }
+    nav a { color:#e2e8f0; text-decoration:none; margin:0 8px; font-weight:bold; font-size:0.9rem; display:inline-block; }
+    nav a:hover { color:#facc15; }
+    nav a.active { color:#facc15; border-bottom:2px solid #facc15; padding-bottom:2px; }
+    .container { max-width:900px; margin:auto; padding:20px; }
+    .page-title { text-align:center; margin:30px 0; font-size:2.5rem; color:#facc15; }
+    .tracker-box { background:#1e293b; padding:25px; border-radius:12px; box-shadow:0 10px 25px rgba(0,0,0,0.4); }
+    body.light .tracker-box { background:#e2e8f0; }
+    .stat-card { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:15px; margin-bottom:20px; }
+    .stat { background:#0f172a; color:#facc15; border-radius:10px; padding:15px; text-align:center; }
+    body.light .stat { background:#cbd5f5; color:#0f172a; }
+    .stat strong { display:block; font-size:1.8rem; }
+    .history { margin-top:20px; }
+    .history ul { list-style:none; margin-top:10px; }
+    .history li { background:#0f172a; padding:10px 12px; border-radius:8px; margin-bottom:8px; color:#cbd5f5; }
+    body.light .history li { background:#cbd5f5; color:#0f172a; }
+    .mode-btn { position:fixed; right:20px; bottom:20px; background:#facc15; color:#0f172a; padding:10px 16px; border-radius:10px; font-weight:bold; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.4); }
+    footer { text-align:center; padding:15px; background:#020617; font-size:0.9rem; color:#9ca3af; margin-top:40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUo9_A3atNAaIezGAS3u-605y5f5hfw5LF4k-0infhbw&s=10" alt="Curry Logo">
+    <h1>Stephen Curry Ultimate Fan Hub</h1>
+    <p>The Greatest Shooter Ever · News · Stats · Highlights · Fans</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="highlights.html">Highlights</a>
+    <a href="stats.html">Stats</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="tracker.html" class="active">3PT Tracker</a>
+    <a href="poll.html">Poll</a>
+    <a href="wallpapers.html">Wallpapers</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="extras.html">Extras</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="container">
+    <h2 class="page-title">🏀 3PT Tracker</h2>
+    <div class="tracker-box">
+      <div class="stat-card">
+        <div class="stat"><span>Made</span><strong>84</strong></div>
+        <div class="stat"><span>Attempted</span><strong>190</strong></div>
+        <div class="stat"><span>Accuracy</span><strong>44%</strong></div>
+        <div class="stat"><span>Best Run</span><strong>9</strong></div>
+      </div>
+
+      <div class="history">
+        <h3>Recent Sessions</h3>
+        <ul>
+          <li>Game 1: 7 made in 15 attempts</li>
+          <li>Game 2: 9 made in 18 attempts</li>
+          <li>Game 3: 12 made in 24 attempts</li>
+          <li>Game 4: 8 made in 16 attempts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2026 Stephen Curry Ultimate Fan Hub · Built by Da Goat</footer>
+  <div class="mode-btn" onclick="toggleMode()">🌙 Toggle Light/Dark</div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('light');
+      localStorage.setItem('darkMode', !document.body.classList.contains('light'));
+    }
+    if (localStorage.getItem('darkMode') === 'false') document.body.classList.add('light');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('nav a').forEach(link => {
+        link.classList.toggle('active', link.href.includes(currentPage));
+      });
+    });
+  </script>
+</body>
+</html>
