@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery - Stephen Curry Ultimate Fan Hub</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: Arial, sans-serif; background:#305CDE; color:#f9fafb; transition:background 0.3s, color 0.3s;
+    }
+    body.light { background:#f1f5f9; color:#0f172a; }
+    header {
+      background:linear-gradient(135deg, #FFDD00, #0008A3); padding:25px; text-align:center; color:#0f172a;
+    }
+    header img { width:120px; border-radius:50%; margin-bottom:10px; border:3px solid #0f172a; }
+    nav {
+      background:#1e293b; padding:12px; text-align:center; position:sticky; top:0; z-index:10; overflow-x:auto; white-space:nowrap;
+    }
+    nav a { color:#e2e8f0; text-decoration:none; margin:0 8px; font-weight:bold; font-size:0.9rem; display:inline-block; }
+    nav a:hover { color:#facc15; }
+    nav a.active { color:#facc15; border-bottom:2px solid #facc15; padding-bottom:2px; }
+    .container { max-width:1200px; margin:auto; padding:20px; }
+    .page-title { text-align:center; margin:30px 0; font-size:2.5rem; color:#facc15; }
+    .toolbar { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-bottom:30px; }
+    .filter-btn {
+      background:#1e293b; color:#facc15; border:2px solid #facc15; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:bold;
+    }
+    .filter-btn.active, .filter-btn:hover { background:#facc15; color:#0f172a; }
+    body.light .filter-btn { background:#e2e8f0; color:#0f172a; border-color:#0f172a; }
+    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+    .gallery-item {
+      background:#1e293b; border-radius:12px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.4); position:relative; transition:transform 0.3s;
+    }
+    body.light .gallery-item { background:#e2e8f0; }
+    .gallery-item:hover { transform:translateY(-5px); }
+    .gallery-image {
+      width:100%; height:250px; display:flex; align-items:center; justify-content:center; font-size:4rem; background:linear-gradient(135deg,#0008A3,#305CDE);
+    }
+    .gallery-overlay {
+      position:absolute; left:0; right:0; bottom:0; background:linear-gradient(to top, rgba(0,0,0,0.85), transparent); padding:15px; transform:translateY(100%); transition:transform 0.3s;
+    }
+    .gallery-item:hover .gallery-overlay { transform:translateY(0); }
+    .gallery-overlay h3 { color:#facc15; margin-bottom:5px; }
+    .gallery-overlay p { color:#cbd5f5; font-size:0.85rem; }
+    .mode-btn {
+      position:fixed; right:20px; bottom:20px; background:#facc15; color:#0f172a; padding:10px 16px; border-radius:10px; font-weight:bold; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.4);
+    }
+    footer { text-align:center; padding:15px; background:#020617; font-size:0.9rem; color:#9ca3af; margin-top:40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUo9_A3atNAaIezGAS3u-605y5f5hfw5LF4k-0infhbw&s=10" alt="Curry Logo">
+    <h1>Stephen Curry Ultimate Fan Hub</h1>
+    <p>The Greatest Shooter Ever · News · Stats · Highlights · Fans</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="highlights.html">Highlights</a>
+    <a href="stats.html">Stats</a>
+    <a href="gallery.html" class="active">Gallery</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="tracker.html">3PT Tracker</a>
+    <a href="poll.html">Poll</a>
+    <a href="wallpapers.html">Wallpapers</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="extras.html">Extras</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="container">
+    <h2 class="page-title">🖼️ Highlight Gallery</h2>
+
+    <div class="toolbar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="celebrations">Celebrations</button>
+      <button class="filter-btn" data-filter="gameplay">Gameplay</button>
+      <button class="filter-btn" data-filter="records">Records</button>
+      <button class="filter-btn" data-filter="team">Team Moments</button>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gallery-item" data-category="gameplay">
+        <div class="gallery-image">🏀</div>
+        <div class="gallery-overlay"><h3>Game-Winner</h3><p>Cold-blooded from deep.</p></div>
+      </div>
+      <div class="gallery-item" data-category="celebrations">
+        <div class="gallery-image">🎉</div>
+        <div class="gallery-overlay"><h3>Iconic Celebration</h3><p>Pure joy after the bucket.</p></div>
+      </div>
+      <div class="gallery-item" data-category="records">
+        <div class="gallery-image">📈</div>
+        <div class="gallery-overlay"><h3>Record Night</h3><p>Historic 3-point milestone.</p></div>
+      </div>
+      <div class="gallery-item" data-category="gameplay">
+        <div class="gallery-image">🎯</div>
+        <div class="gallery-overlay"><h3>Shot Form</h3><p>Perfect mechanics.</p></div>
+      </div>
+      <div class="gallery-item" data-category="team">
+        <div class="gallery-image">🤝</div>
+        <div class="gallery-overlay"><h3>Team Chemistry</h3><p>Warriors winning together.</p></div>
+      </div>
+      <div class="gallery-item" data-category="celebrations">
+        <div class="gallery-image">⭐</div>
+        <div class="gallery-overlay"><h3>Star Performance</h3><p>Back-to-back big nights.</p></div>
+      </div>
+      <div class="gallery-item" data-category="gameplay">
+        <div class="gallery-image">🔥</div>
+        <div class="gallery-overlay"><h3>Hot Streak</h3><p>On fire from downtown.</p></div>
+      </div>
+      <div class="gallery-item" data-category="records">
+        <div class="gallery-image">👑</div>
+        <div class="gallery-overlay"><h3>Legend Status</h3><p>GOAT shooter energy.</p></div>
+      </div>
+      <div class="gallery-item" data-category="team">
+        <div class="gallery-image">🏆</div>
+        <div class="gallery-overlay"><h3>Championship Glory</h3><p>Celebrating the title run.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2026 Stephen Curry Ultimate Fan Hub · Built by Da Goat</footer>
+  <div class="mode-btn" onclick="toggleMode()">🌙 Toggle Light/Dark</div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('light');
+      localStorage.setItem('darkMode', !document.body.classList.contains('light'));
+    }
+    if (localStorage.getItem('darkMode') === 'false') document.body.classList.add('light');
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.gallery-item').forEach(item => {
+          const show = filter === 'all' || item.dataset.category === filter;
+          item.style.display = show ? 'block' : 'none';
+        });
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('nav a').forEach(link => {
+        link.classList.toggle('active', link.href.includes(currentPage));
+      });
+    });
+  </script>
+</body>
+</html>
