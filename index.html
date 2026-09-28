@@ -285,7 +285,7 @@ l..<!DOCTYPE html>
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     margin: 20px 0;
-   img  max-width: 50%;
+   img  max-width: 100%;
     height: auto;
     max-width: 100%;
     height: auto;
@@ -372,6 +372,25 @@ l..<!DOCTYPE html>
 
 <!-- Your poll wrapped inside the card -->
 <div class="card">
+  <style>
+    .card img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .poll-options img {
+        width: 100px;
+        height: auto;
+    }
+
+    .card {
+        overflow: hidden;
+    }
+
+    /* your other CSS here */
+</style>
+
 <section id="poll" style="margin-top:40px;">
     <h2>🔥 Ultimate Shooter Poll (God‑Tier Version)</h2>
     <p>Choose the greatest shooter of all time.</p>
