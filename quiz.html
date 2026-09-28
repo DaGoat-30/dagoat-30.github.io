@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz - Stephen Curry Ultimate Fan Hub</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: Arial, sans-serif; background:#305CDE; color:#f9fafb; transition:background 0.3s, color 0.3s;
+    }
+    body.light { background:#f1f5f9; color:#0f172a; }
+    header { background:linear-gradient(135deg, #FFDD00, #0008A3); padding:25px; text-align:center; color:#0f172a; }
+    header img { width:120px; border-radius:50%; margin-bottom:10px; border:3px solid #0f172a; }
+    nav { background:#1e293b; padding:12px; text-align:center; position:sticky; top:0; z-index:10; overflow-x:auto; white-space:nowrap; }
+    nav a { color:#e2e8f0; text-decoration:none; margin:0 8px; font-weight:bold; font-size:0.9rem; display:inline-block; }
+    nav a:hover { color:#facc15; }
+    nav a.active { color:#facc15; border-bottom:2px solid #facc15; padding-bottom:2px; }
+    .container { max-width:900px; margin:auto; padding:20px; }
+    .page-title { text-align:center; margin:30px 0; font-size:2.5rem; color:#facc15; }
+    .quiz-box {
+      background:#1e293b; border-radius:12px; padding:25px; box-shadow:0 10px 25px rgba(0,0,0,0.4); margin-bottom:30px;
+    }
+    body.light .quiz-box { background:#e2e8f0; }
+    .question { font-size:1.2rem; margin-bottom:20px; color:#facc15; }
+    .answers { display:grid; gap:12px; }
+    .answer { background:#0f172a; color:#fff; border:none; padding:12px 16px; border-radius:8px; cursor:pointer; text-align:left; }
+    body.light .answer { background:#cbd5f5; color:#0f172a; }
+    .answer:hover { filter:brightness(1.1); }
+    .result {
+      margin-top:20px; font-size:1.2rem; font-weight:bold; color:#facc15; display:none;
+    }
+    .score { margin-top:15px; color:#cbd5f5; }
+    body.light .score { color:#475569; }
+    .mode-btn { position:fixed; right:20px; bottom:20px; background:#facc15; color:#0f172a; padding:10px 16px; border-radius:10px; font-weight:bold; cursor:pointer; box-shadow:0 5px 15px rgba(0,0,0,0.4); }
+    footer { text-align:center; padding:15px; background:#020617; font-size:0.9rem; color:#9ca3af; margin-top:40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUo9_A3atNAaIezGAS3u-605y5f5hfw5LF4k-0infhbw&s=10" alt="Curry Logo">
+    <h1>Stephen Curry Ultimate Fan Hub</h1>
+    <p>The Greatest Shooter Ever · News · Stats · Highlights · Fans</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="highlights.html">Highlights</a>
+    <a href="stats.html">Stats</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="quiz.html" class="active">Quiz</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="tracker.html">3PT Tracker</a>
+    <a href="poll.html">Poll</a>
+    <a href="wallpapers.html">Wallpapers</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="extras.html">Extras</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="container">
+    <h2 class="page-title">🧠 Curry Fan Quiz</h2>
+
+    <div class="quiz-box">
+      <div class="question" id="question">1. Which NBA team drafted Stephen Curry?</div>
+      <div class="answers">
+        <button class="answer" data-correct="true">Golden State Warriors</button>
+        <button class="answer">Los Angeles Lakers</button>
+        <button class="answer">Boston Celtics</button>
+        <button class="answer">New York Knicks</button>
+      </div>
+      <div class="result" id="result">Correct! You’re locked in.</div>
+      <div class="score" id="score">Score: 0/3</div>
+    </div>
+  </div>
+
+  <footer>© 2026 Stephen Curry Ultimate Fan Hub · Built by Da Goat</footer>
+  <div class="mode-btn" onclick="toggleMode()">🌙 Toggle Light/Dark</div>
+
+  <script>
+    const quizData = [
+      { q: '1. Which NBA team drafted Stephen Curry?', a: ['Golden State Warriors','Los Angeles Lakers','Boston Celtics','New York Knicks'], correct: 0 },
+      { q: '2. How many NBA championships has Curry won?', a: ['3','4','5','2'], correct: 1 },
+      { q: '3. Curry is known as the greatest what in NBA history?', a: ['Passer','Shooter','Defender','Rebounder'], correct: 1 }
+    ];
+    let index = 0, score = 0;
+    const questionEl = document.getElementById('question');
+    const answersEl = document.querySelector('.answers');
+    const resultEl = document.getElementById('result');
+    const scoreEl = document.getElementById('score');
+
+    function renderQuestion() {
+      if (index >= quizData.length) {
+        questionEl.textContent = 'Quiz complete!';
+        answersEl.innerHTML = '<p class="score">Final score: ' + score + '/' + quizData.length + '</p>';
+        resultEl.style.display = 'block';
+        resultEl.textContent = score === quizData.length ? 'Perfect! You’re a true Curry fan.' : 'Nice try — keep learning.';
+        return;
+      }
+      const current = quizData[index];
+      questionEl.textContent = current.q;
+      answersEl.innerHTML = '';
+      current.a.forEach((option, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'answer';
+        btn.textContent = option;
+        btn.onclick = () => {
+          const isCorrect = i === current.correct;
+          resultEl.style.display = 'block';
+          resultEl.textContent = isCorrect ? 'Correct! You’re locked in.' : 'Wrong answer. The answer was: ' + current.a[current.correct];
+          if (isCorrect) score++;
+          scoreEl.textContent = 'Score: ' + score + '/' + quizData.length;
+          setTimeout(() => {
+            index++;
+            renderQuestion();
+          }, 1200);
+        };
+        answersEl.appendChild(btn);
+      });
+    }
+
+    function toggleMode() {
+      document.body.classList.toggle('light');
+      localStorage.setItem('darkMode', !document.body.classList.contains('light'));
+    }
+    if (localStorage.getItem('darkMode') === 'false') document.body.classList.add('light');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderQuestion();
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('nav a').forEach(link => {
+        link.classList.toggle('active', link.href.includes(currentPage));
+      });
+    });
+  </script>
+</body>
+</html>
