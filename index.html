@@ -278,60 +278,13 @@
         <button class="btn" onclick="resetThree()">Reset</button>
       </div>
       <body>
-       <div class="card">
-<section id="poll" style="margin-top:20px;">
-  <section id="poll" style="margin-top:40px;">
-    <h2>🔥 Ultimate Shooter Poll (God‑Tier Version)</h2>
-    <p>Choose the greatest shooter of all time.</p>
-
-    <div class="poll-options">
-        <div class="option" onclick="castVote('curry')">
-            <img src="https://i.imgur.com/8bZQZQv.png" alt="Curry">
-            <button>Stephen Curry</button>
-        </div>
-
-        <div class="option" onclick="castVote('klay')">
-            <img src="https://i.imgur.com/8bZQZQv.png" alt="Klay">
-            <button>Klay Thompson</button>
-        </div>
-
-        <div class="option" onclick="castVote('ray')">
-            <img src="https://i.imgur.com/8bZQZQv.png" alt="Ray Allen">
-            <button>Ray Allen</button>
-        </div>
-    </div>
-
-    <h3>Results:</h3>
-
-    <div class="result">
-        <span>Curry</span>
-        <div class="bar"><div id="curryBar"></div></div>
-        <span id="curryPercent">0%</span>
-    </div>
-
-    <div class="result">
-        <span>Klay</span>
-        <div class="bar"><div id="klayBar"></div></div>
-        <span id="klayPercent">0%</span>
-    </div>
-
-    <div class="result">
-        <span>Ray Allen</span>
-        <div class="bar"><div id="rayBar"></div></div>
-        <span id="rayPercent">0%</span>
-    </div>
-
-    <h3>Leaderboard:</h3>
-    <ul id="leaderboard"></ul>
-
-    <button onclick="resetPoll()" style="margin-top:20px;background:red;color:white;padding:10px;border:none;border-radius:5px;cursor:pointer;">
-        Reset Poll
-    </button>
-
-    <div id="curryAnimation">🏀💥 CURRY FOR THREEEEEE!!!</div>
-</section>
-
-<style>
+        <style>
+   .card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    margin: 20px 0;
     #poll button {
         margin: 5px;
         padding: 10px 20px;
@@ -407,6 +360,64 @@
         100% { transform: scale(1); opacity: 1; }
     }
 </style>
+
+
+<body>
+
+<!-- Your poll wrapped inside the card -->
+<div class="card">
+<section id="poll" style="margin-top:40px;">
+    <h2>🔥 Ultimate Shooter Poll (God‑Tier Version)</h2>
+    <p>Choose the greatest shooter of all time.</p>
+
+    <div class="poll-options">
+        <div class="option" onclick="castVote('curry')">
+            <img src="https://i.imgur.com/8bZQZQv.png" alt="Curry">
+            <button>Stephen Curry</button>
+        </div>
+
+        <div class="option" onclick="castVote('klay')">
+            <img src="https://i.imgur.com/8bZQZQv.png" alt="Klay">
+            <button>Klay Thompson</button>
+        </div>
+
+        <div class="option" onclick="castVote('ray')">
+            <img src="https://i.imgur.com/8bZQZQv.png" alt="Ray Allen">
+            <button>Ray Allen</button>
+        </div>
+    </div>
+
+    <h3>Results:</h3>
+
+    <div class="result">
+        <span>Curry</span>
+        <div class="bar"><div id="curryBar"></div></div>
+        <span id="curryPercent">0%</span>
+    </div>
+
+    <div class="result">
+        <span>Klay</span>
+        <div class="bar"><div id="klayBar"></div></div>
+        <span id="klayPercent">0%</span>
+    </div>
+
+    <div class="result">
+        <span>Ray Allen</span>
+        <div class="bar"><div id="rayBar"></div></div>
+        <span id="rayPercent">0%</span>
+    </div>
+
+    <h3>Leaderboard:</h3>
+    <ul id="leaderboard"></ul>
+
+    <button onclick="resetPoll()" style="margin-top:20px;background:red;color:white;padding:10px;border:none;border-radius:5px;cursor:pointer;">
+        Reset Poll
+    </button>
+
+    <div id="curryAnimation">🏀💥 CURRY FOR THREEEEEE!!!</div>
+</section>
+</div>
+
 
 <script>
     let votes = JSON.parse(localStorage.getItem("pollVotes")) || {
@@ -484,6 +495,9 @@
 
     updatePoll();
 </script>
+
+</body>
+
 <body>
 
       <!-- Wallpapers -->
