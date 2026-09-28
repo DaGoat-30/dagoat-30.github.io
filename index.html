@@ -129,11 +129,21 @@
       cursor: pointer;
       font-weight: bold;
       margin-top: 6px;
+      margin-right: 6px;
       font-size: 0.85rem;
     }
 
     .btn:hover {
       filter: brightness(1.1);
+    }
+
+    .btn-danger {
+      background: #ef4444;
+      color: #fff;
+    }
+
+    .btn-danger:hover {
+      background: #dc2626;
     }
 
     .input-small {
@@ -254,6 +264,161 @@
         50% { transform: scale(1.3); opacity: 1; }
         100% { transform: scale(1); opacity: 1; }
     }
+
+    /* 3PT TRACKER UPGRADES */
+    .tracker-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin: 15px 0;
+      font-size: 0.9rem;
+    }
+
+    .stat-box {
+      background: #0f172a;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+      border: 2px solid #facc15;
+    }
+
+    body.light .stat-box {
+      background: #cbd5e1;
+      color: #0f172a;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #facc15;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    body.light .stat-label {
+      color: #475569;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background: #0f172a;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 12px 0;
+      border: 2px solid #facc15;
+    }
+
+    body.light .progress-bar {
+      background: #cbd5e1;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #facc15, #fbbf24);
+      width: 0%;
+      transition: width 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: #0f172a;
+      font-weight: bold;
+    }
+
+    .game-sessions {
+      margin-top: 15px;
+      max-height: 200px;
+      overflow-y: auto;
+      background: #0f172a;
+      border-radius: 8px;
+      padding: 10px;
+    }
+
+    body.light .game-sessions {
+      background: #cbd5e1;
+    }
+
+    .game-item {
+      background: #1e293b;
+      padding: 8px;
+      margin: 6px 0;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    body.light .game-item {
+      background: #e2e8f0;
+    }
+
+    .game-item .made {
+      color: #4ade80;
+      font-weight: bold;
+    }
+
+    .shot-log {
+      margin-top: 15px;
+      max-height: 150px;
+      overflow-y: auto;
+      background: #0f172a;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 0.8rem;
+    }
+
+    body.light .shot-log {
+      background: #cbd5e1;
+    }
+
+    .shot-item {
+      padding: 4px;
+      margin: 2px 0;
+      background: #1e293b;
+      border-left: 3px solid #4ade80;
+      border-radius: 4px;
+    }
+
+    body.light .shot-item {
+      background: #e2e8f0;
+    }
+
+    .comparison-box {
+      background: #0f172a;
+      padding: 12px;
+      border-radius: 8px;
+      margin-top: 12px;
+      text-align: center;
+      border: 2px solid #fbbf24;
+    }
+
+    body.light .comparison-box {
+      background: #cbd5e1;
+    }
+
+    .comparison-text {
+      font-size: 0.9rem;
+      margin: 6px 0;
+    }
+
+    .comparison-text.better {
+      color: #4ade80;
+      font-weight: bold;
+    }
+
+    .comparison-text.worse {
+      color: #f87171;
+    }
+
+    .comparison-text.equal {
+      color: #facc15;
+    }
   </style>
 </head>
 <body>
@@ -353,13 +518,62 @@
         <p>• 2024 - Absolutely fried the Persian and France team. Won a gold medal with the United States men's basketball team at the Paris Olympic Games
       </div>
 
-      <!-- 3PT Tracker -->
+      <!-- 3PT Tracker UPGRADED -->
       <div class="card" id="tracker">
-        <h3>3‑Pointer Tracker</h3>
-        <p>Track how many threes Curry hits in a game (your own count):</p>
-        <p>Threes this game: <span id="threeCount">0</span></p>
-        <button class="btn" onclick="addThree()">+1 Three</button>
-        <button class="btn" onclick="resetThree()">Reset</button>
+        <h3>🏀 3‑Pointer Tracker (UPGRADED)</h3>
+        
+        <!-- Current Game Counter -->
+        <div>
+          <p style="margin: 0 0 10px 0;"><strong>Current Game:</strong></p>
+          <p style="font-size: 2.5rem; font-weight: bold; color: #facc15; text-align: center; margin: 10px 0;">
+            <span id="threeCount">0</span>
+          </p>
+        </div>
+
+        <!-- Progress Bar vs Curry -->
+        <div class="comparison-box">
+          <p class="small-text" style="margin: 0;">vs Curry's Avg (42.7%)</p>
+          <p style="font-size: 0.9rem; margin: 6px 0;">Your Current %: <span id="yourPercent">0%</span></p>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill">0%</div>
+          </div>
+          <div id="comparisonResult"></div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="tracker-stats">
+          <div class="stat-box">
+            <div class="stat-value" id="totalMade">0</div>
+            <div class="stat-label">Total Made</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="avgPerGame">0</div>
+            <div class="stat-label">Avg/Game</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="bestGame">0</div>
+            <div class="stat-label">Best Game</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-value" id="gamesPlayed">0</div>
+            <div class="stat-label">Games</div>
+          </div>
+        </div>
+
+        <!-- Controls -->
+        <div style="text-align: center; margin: 12px 0;">
+          <button class="btn" onclick="addThree()">🎯 +1 Three</button>
+          <button class="btn" onclick="endGame()">✅ End Game</button>
+          <button class="btn btn-danger" onclick="resetAll()">🔄 Reset All</button>
+        </div>
+
+        <!-- Shot Log -->
+        <p style="margin: 12px 0 6px 0; font-size: 0.9rem;"><strong>Shot Log (Current Game):</strong></p>
+        <div class="shot-log" id="shotLog">No shots yet</div>
+
+        <!-- Game History -->
+        <p style="margin: 12px 0 6px 0; font-size: 0.9rem;"><strong>Game History:</strong></p>
+        <div class="game-sessions" id="gameSessions">No games played yet</div>
       </div>
 
       <!-- Ultimate Shooter Poll -->
@@ -466,6 +680,7 @@
   <div class="mode-btn" onclick="toggleMode()">Toggle Light/Dark</div>
 
   <script>
+    // ===== POLL LOGIC =====
     let votes = JSON.parse(localStorage.getItem("pollVotes")) || {
         curry: 0,
         klay: 0,
@@ -541,12 +756,124 @@
 
     updatePoll();
 
-    // Light/Dark mode
+    // ===== 3PT TRACKER LOGIC (UPGRADED) =====
+    let trackerData = JSON.parse(localStorage.getItem("trackerData")) || {
+        currentGame: 0,
+        gameHistory: [],
+        shotLog: []
+    };
+
+    const CURRY_3PT_PERCENTAGE = 42.7;
+
+    function addThree() {
+        trackerData.currentGame++;
+        const timestamp = new Date().toLocaleTimeString();
+        trackerData.shotLog.push(timestamp);
+        saveTrackerData();
+        updateTrackerDisplay();
+    }
+
+    function endGame() {
+        if (trackerData.currentGame === 0) {
+            alert("No shots in this game!");
+            return;
+        }
+        trackerData.gameHistory.push({
+            made: trackerData.currentGame,
+            timestamp: new Date().toLocaleString()
+        });
+        trackerData.currentGame = 0;
+        trackerData.shotLog = [];
+        saveTrackerData();
+        updateTrackerDisplay();
+        alert("Game saved! ✅");
+    }
+
+    function resetAll() {
+        if (confirm("Reset ALL data? This cannot be undone.")) {
+            trackerData = {
+                currentGame: 0,
+                gameHistory: [],
+                shotLog: []
+            };
+            saveTrackerData();
+            updateTrackerDisplay();
+            alert("All data reset! 🔄");
+        }
+    }
+
+    function saveTrackerData() {
+        localStorage.setItem("trackerData", JSON.stringify(trackerData));
+    }
+
+    function updateTrackerDisplay() {
+        // Current count
+        document.getElementById("threeCount").innerText = trackerData.currentGame;
+
+        // Calculate stats
+        const totalMade = trackerData.gameHistory.reduce((sum, game) => sum + game.made, 0);
+        const gamesPlayed = trackerData.gameHistory.length;
+        const avgPerGame = gamesPlayed > 0 ? (totalMade / gamesPlayed).toFixed(1) : 0;
+        const bestGame = gamesPlayed > 0 ? Math.max(...trackerData.gameHistory.map(g => g.made)) : 0;
+
+        // Update stat boxes
+        document.getElementById("totalMade").innerText = totalMade;
+        document.getElementById("avgPerGame").innerText = avgPerGame;
+        document.getElementById("bestGame").innerText = bestGame;
+        document.getElementById("gamesPlayed").innerText = gamesPlayed;
+
+        // Update progress bar (current game vs Curry avg)
+        let currentPercent = 0;
+        if (trackerData.currentGame > 0) {
+            // Assuming ~10 attempts per game as baseline
+            currentPercent = Math.min(100, (trackerData.currentGame / (CURRY_3PT_PERCENTAGE / 10)).toFixed(1));
+        }
+        document.getElementById("yourPercent").innerText = currentPercent + "%";
+        document.getElementById("progressFill").style.width = currentPercent + "%";
+
+        // Comparison
+        let comparisonEl = document.getElementById("comparisonResult");
+        if (trackerData.currentGame > 0) {
+            const curryBaseline = 5; // Curry avg ~5 threes per game
+            if (trackerData.currentGame > curryBaseline) {
+                comparisonEl.innerHTML = `<p class="comparison-text better">🔥 Heating up! Better than Curry's typical game!</p>`;
+            } else if (trackerData.currentGame === curryBaseline) {
+                comparisonEl.innerHTML = `<p class="comparison-text equal">📊 Matching Curry's typical night!</p>`;
+            } else {
+                comparisonEl.innerHTML = `<p class="comparison-text worse">Keep shooting! 💪</p>`;
+            }
+        } else {
+            comparisonEl.innerHTML = ``;
+        }
+
+        // Shot log
+        let shotLogEl = document.getElementById("shotLog");
+        if (trackerData.shotLog.length > 0) {
+            shotLogEl.innerHTML = trackerData.shotLog.map(time => `<div class="shot-item">✅ Shot at ${time}</div>`).join("");
+        } else {
+            shotLogEl.innerHTML = "No shots yet";
+        }
+
+        // Game history
+        let gameSessionsEl = document.getElementById("gameSessions");
+        if (trackerData.gameHistory.length > 0) {
+            gameSessionsEl.innerHTML = trackerData.gameHistory
+                .reverse()
+                .map(game => `<div class="game-item"><span>${game.timestamp}</span> <span class="made">${game.made} 3PT</span></div>`)
+                .join("");
+        } else {
+            gameSessionsEl.innerHTML = "No games played yet";
+        }
+    }
+
+    updateTrackerDisplay();
+
+    // ===== LIGHT/DARK MODE =====
     function toggleMode() {
       document.body.classList.toggle('light');
     }
 
-    // Auto-refresh news (demo)
+    // ===== AUTO-REFRESH NEWS =====
     function refreshNews() {
       const updates = [
         "Curry working on new off-ball movement drills.",
@@ -565,24 +892,13 @@
     refreshNews();
     setInterval(refreshNews, 5000);
 
-    // Quiz answers
+    // ===== QUIZ =====
     function showQuizAnswers() {
       document.getElementById("quizAnswers").innerText =
         "Answers: 1) 13 threes  |  2) Cleveland Cavaliers  |  3) #30  |  4) 12";
     }
 
-    // 3PT tracker
-    let threeCount = 0;
-    function addThree() {
-      threeCount++;
-      document.getElementById("threeCount").innerText = threeCount;
-    }
-    function resetThree() {
-      threeCount = 0;
-      document.getElementById("threeCount").innerText = threeCount;
-    }
-
-    // Fan leaderboard
+    // ===== FAN LEADERBOARD =====
     function addFan() {
       const name = document.getElementById("fanName").value.trim();
       const level = document.getElementById("fanLevel").value.trim();
