@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Recent Highlights - Stephen Curry Ultimate Fan Hub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #305CDE;
+      color: #f9fafb;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.light {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    header {
+      background: linear-gradient(135deg, #FFDD00, #0008A3);
+      padding: 25px;
+      text-align: center;
+      color: #0f172a;
+    }
+
+    header img {
+      width: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 3px solid #0f172a;
+    }
+
+    nav {
+      background: #1e293b;
+      padding: 12px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: #e2e8f0;
+      margin: 0 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      color: #facc15;
+    }
+
+    nav a.active {
+      color: #facc15;
+      border-bottom: 2px solid #facc15;
+      padding-bottom: 2px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 30px 0;
+      font-size: 2.5rem;
+      color: #facc15;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .highlight-card {
+      background: #1e293b;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(250, 204, 21, 0.3);
+    }
+
+    body.light .highlight-card {
+      background: #e2e8f0;
+    }
+
+    .highlight-video {
+      width: 100%;
+      height: 200px;
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .highlight-video::after {
+      content: '▶️';
+      position: absolute;
+    }
+
+    .highlight-info {
+      padding: 15px;
+    }
+
+    .highlight-info h3 {
+      color: #facc15;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .highlight-date {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+
+    body.light .highlight-date {
+      color: #64748b;
+    }
+
+    .highlight-desc {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #cbd5f5;
+    }
+
+    body.light .highlight-desc {
+      color: #475569;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .stat-badge {
+      background: #0f172a;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      color: #facc15;
+      font-weight: bold;
+    }
+
+    body.light .stat-badge {
+      background: #cbd5f5;
+      color: #0f172a;
+    }
+
+    .mode-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: #facc15;
+      color: #0f172a;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #020617;
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-top: 40px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUo9_A3atNAaIezGAS3u-605y5f5hfw5LF4k-0infhbw&s=10" alt="Curry Logo">
+    <h1>Stephen Curry Ultimate Fan Hub</h1>
+    <p>The Greatest Shooter Ever · News · Stats · Highlights · Fans</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="highlights.html" class="active">Highlights</a>
+    <a href="stats.html">Stats</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="tracker.html">3PT Tracker</a>
+    <a href="poll.html">Poll</a>
+    <a href="wallpapers.html">Wallpapers</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="extras.html">Extras</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="container">
+    <h2 class="page-title">🎬 Recent Highlights</h2>
+
+    <div class="highlights-grid">
+      <div class="highlight-card">
+        <div class="highlight-video"></div>
+        <div class="highlight-info">
+          <h3>Game-Winner from 40+ Feet</h3>
+          <div class="highlight-date">Last Game - Final Seconds</div>
+          <div class="highlight-desc">
+            Steph Curry pulls off another magic moment, sinking a deep three-pointer from way beyond the arc to seal the victory.
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">3PTS: 40+ ft</span>
+            <span class="stat-badge">±0.5 SEC LEFT</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-video"></div>
+        <div class="highlight-info">
+          <h3>Perfect 3-Point Shooting Night</h3>
+          <div class="highlight-date">3 Games Ago</div>
+          <div class="highlight-desc">
+            Curry goes 12/12 from three-point range in a dominant performance, showcasing his incredible accuracy and range.
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">12/12 3PT</span>
+            <span class="stat-badge">36 PTS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-video"></div>
+        <div class="highlight-info">
+          <h3>Ankle-Breaker Crossover</h3>
+          <div class="highlight-date">5 Games Ago</div>
+          <div class="highlight-desc">
+            A devastating crossover leaves the defender absolutely frozen before Curry drains a three-pointer in their face.
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">ANKLE-BREAKER</span>
+            <span class="stat-badge">3PT</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-video"></div>
+        <div class="highlight-info">
+          <h3>Curry Breaks Historic Record</h3>
+          <div class="highlight-date">1 Week Ago</div>
+          <div class="highlight-desc">
+            Another historic milestone reached as Steph continues to rewrite the NBA record books with his three-point prowess.
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">RECORD</span>
+            <span class="stat-badge">ALL-TIME</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-video"></div>
+        <div class="highlight-info">
+          <h3>Clutch Performance in Finals</h3>
+          <div class="highlight-date">2 Weeks Ago</div>
+          <div class="highlight-desc">
+            Steph steps up in the biggest moments, delivering a clutch performance when his team needs it most.
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">CLUTCH</span>
+            <span class="stat-badge">5 THREES</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-card">
+        <div class="highlight-video"></div>
+        <div class="highlight-info">
+          <h3>Full Game Highlights Package</h3>
+          <div class="highlight-date">2 Weeks Ago</div>
+          <div class="highlight-desc">
+            Complete game highlights showcasing Curry's all-around excellence, including scoring, playmaking, and defense.
+          </div>
+          <div class="stats-row">
+            <span class="stat-badge">FULL GAME</span>
+            <span class="stat-badge">COMPLETE</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Stephen Curry Ultimate Fan Hub · Built by Da Goat
+  </footer>
+
+  <div class="mode-btn" onclick="toggleMode()">🌙 Toggle Light/Dark</div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('light');
+      localStorage.setItem('darkMode', !document.body.classList.contains('light'));
+    }
+
+    if (localStorage.getItem('darkMode') === 'false') {
+      document.body.classList.add('light');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('nav a').forEach(link => {
+        if (link.href.includes(currentPage)) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
