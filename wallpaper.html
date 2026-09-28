@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wallpapers - Stephen Curry Ultimate Fan Hub</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #305CDE; color: #f9fafb; transition: background 0.3s, color 0.3s; }
+    body.light { background: #f1f5f9; color: #0f172a; }
+    header { background: linear-gradient(135deg, #FFDD00, #0008A3); padding: 25px; text-align: center; color: #0f172a; }
+    header img { width: 120px; border-radius: 50%; margin-bottom: 10px; border: 3px solid #0f172a; }
+    nav { background: #1e293b; padding: 12px; text-align: center; position: sticky; top: 0; z-index: 10; overflow-x: auto; white-space: nowrap; }
+    nav a { color: #e2e8f0; margin: 0 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-block; }
+    nav a:hover { color: #facc15; }
+    nav a.active { color: #facc15; border-bottom: 2px solid #facc15; padding-bottom: 2px; }
+    .container { max-width: 1100px; margin: auto; padding: 20px; }
+    .page-title { text-align: center; margin: 30px 0; font-size: 2.5rem; color: #facc15; }
+    .wallpaper-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .wallpaper-card {
+      background: #1e293b;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      transition: transform 0.3s;
+    }
+    body.light .wallpaper-card { background: #e2e8f0; }
+    .wallpaper-card:hover { transform: translateY(-5px); }
+    .preview {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: #facc15;
+      background: linear-gradient(135deg, #0008A3, #305CDE);
+    }
+    .info { padding: 16px; }
+    .info h3 { margin-bottom: 8px; color: #facc15; }
+    .info p { color: #cbd5f5; line-height: 1.5; }
+    body.light .info p { color: #475569; }
+    .download-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background: #facc15;
+      color: #0f172a;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .mode-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: #facc15;
+      color: #0f172a;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      font-size: 0.9rem;
+    }
+    footer { text-align: center; padding: 15px; background: #020617; font-size: 0.9rem; color: #9ca3af; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUo9_A3atNAaIezGAS3u-605y5f5hfw5LF4k-0infhbw&s=10" alt="Curry Logo">
+    <h1>Stephen Curry Ultimate Fan Hub</h1>
+    <p>The Greatest Shooter Ever · News · Stats · Highlights · Fans</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="highlights.html">Highlights</a>
+    <a href="stats.html">Stats</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="tracker.html">3PT Tracker</a>
+    <a href="poll.html">Poll</a>
+    <a href="wallpapers.html" class="active">Wallpapers</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="extras.html">Extras</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="container">
+    <h2 class="page-title">🎨 Curry Wallpapers</h2>
+
+    <div class="wallpaper-grid">
+      <div class="wallpaper-card">
+        <div class="preview">🏀</div>
+        <div class="info">
+          <h3>Warrior Gold</h3>
+          <p>Classic Curry vibe with a clean blue-and-gold look.</p>
+          <a class="download-btn" href="#">Download</a>
+        </div>
+      </div>
+
+      <div class="wallpaper-card">
+        <div class="preview">🔥</div>
+        <div class="info">
+          <h3>Hot Hand</h3>
+          <p>High-energy wallpaper inspired by Curry's deep shooting range.</p>
+          <a class="download-btn" href="#">Download</a>
+        </div>
+      </div>
+
+      <div class="wallpaper-card">
+        <div class="preview">🌊</div>
+        <div class="info">
+          <h3>Blue Splash</h3>
+          <p>Cool color scheme inspired by hydration and unstoppable shooting.</p>
+          <a class="download-btn" href="#">Download</a>
+        </div>
+      </div>
+
+      <div class="wallpaper-card">
+        <div class="preview">⚡</div>
+        <div class="info">
+          <h3>Electric Shot</h3>
+          <p>Power-packed wallpaper designed for a true sharpshooter.</p>
+          <a class="download-btn" href="#">Download</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2026 Stephen Curry Ultimate Fan Hub · Built by Da Goat</footer>
+  <div class="mode-btn" onclick="toggleMode()">🌙 Toggle Light/Dark</div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('light');
+      localStorage.setItem('darkMode', !document.body.classList.contains('light'));
+    }
+    if (localStorage.getItem('darkMode') === 'false') document.body.classList.add('light');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('nav a').forEach(link => {
+        link.classList.toggle('active', link.href.includes(currentPage));
+      });
+    });
+  </script>
+</body>
+</html>
