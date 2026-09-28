@@ -1,4 +1,4 @@
-l..<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -79,6 +79,7 @@ l..<!DOCTYPE html>
       border-radius: 10px;
       box-shadow: 0 10px 25px rgba(0,0,0,0.4);
       animation: fadeIn 0.8s ease;
+      overflow: hidden;
     }
 
     body.light .card {
@@ -169,6 +170,89 @@ l..<!DOCTYPE html>
       font-size: 0.9rem;
       color: #9ca3af;
       margin-top: 40px;
+    }
+
+    /* POLL STYLES */
+    #poll button {
+        margin: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 8px;
+        border: none;
+        background: gold;
+        transition: 0.3s;
+    }
+
+    #poll button:hover {
+        background: orange;
+        transform: scale(1.05);
+    }
+
+    .poll-options {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-bottom: 20px;
+        justify-content: center;
+    }
+
+    .option {
+        text-align: center;
+        cursor: pointer;
+        flex: 0 1 120px;
+        overflow: hidden;
+    }
+
+    .option img {
+        width: 120px;
+        height: 120px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        transition: transform 0.3s ease;
+        object-fit: cover;
+        display: block;
+        max-width: 100%;
+    }
+
+    .option img:hover {
+        transform: scale(1.05);
+    }
+
+    .result {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0;
+    }
+
+    .bar {
+        width: 60%;
+        height: 15px;
+        background: #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .bar div {
+        height: 100%;
+        width: 0%;
+        background: gold;
+        transition: width 0.4s ease;
+    }
+
+    #curryAnimation {
+        display: none;
+        font-size: 24px;
+        margin-top: 20px;
+        color: gold;
+        animation: shoot 1s ease;
+    }
+
+    @keyframes shoot {
+        0% { transform: scale(0.5); opacity: 0; }
+        50% { transform: scale(1.3); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
@@ -264,7 +348,7 @@ l..<!DOCTYPE html>
         <p>• 2015 - First NBA Championship & MVP</p>
         <p>• 2016 - Unanimous MVP, 73‑win season</p>
         <p>• 2017-2018 - Back‑to‑back titles with KD</p>
-        <p>• 2021 - Surpassed ry Allen to become the NBA's all-time leader in career three-pointers made
+        <p>• 2021 - Surpassed Ray Allen to become the NBA's all-time leader in career three-pointers made
         <p>• 2022 - Finals MVP vs Celtics</p>
         <p>• 2024 - Absolutely fried the Persian and France team. Won a gold medal with the United States men's basketball team at the Paris Olympic Games
       </div>
@@ -277,175 +361,111 @@ l..<!DOCTYPE html>
         <button class="btn" onclick="addThree()">+1 Three</button>
         <button class="btn" onclick="resetThree()">Reset</button>
       </div>
-      <body>
-        <style>
-   .card {
-    background: black  ;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    margin: 20px 0;
-   img  max-width: 100%;
-    height: auto;
-    max-width: 100%;
-    height: auto;
-    overflow: hidden;
-}
-    #poll button {
-        margin: 5px;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border-radius: 8px;
-        border: none;
-        background: gold;
-        transition: 0.3s;
-    }
 
-    #poll button:hover {
-        background: orange;
-        transform: scale(1.05);
-    }
+      <!-- Ultimate Shooter Poll -->
+      <div class="card" id="poll">
+        <h2>🔥 Ultimate Shooter Poll (God‑Tier Version)</h2>
+        <p>Choose the greatest shooter of all time.</p>
 
-    .poll-options {
-        display: flex;
-        gap: 20px;
-        margin-bottom: 20px;
-    }
+        <div class="poll-options">
+            <div class="option" onclick="castVote('curry')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVFiVn_wj8y8yr3USLBqdeTJRS7FBMZzIzYVy6KQtziA&s=10" alt="Curry">
+                <button>Stephen Curry</button>
+            </div>
 
-    .option {
-        text-align: center;
-        cursor: pointer;
-    }
+            <div class="option" onclick="castVote('klay')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT22-y2mZ2Gtq9gTsfYtfjB5Zqunuii6XQIyVr3PgXLvg&s=10" alt="Klay">
+                <button>Klay Thompson</button>
+            </div>
 
-    .option img {
-        width: 120px;
-        height: 120px;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        transition: 0.3s;
-    }
-
-    .option img:hover {
-        transform: scale(1.1);
-    }
-
-    .result {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 10px 0;
-    }
-
-    .bar {
-        width: 60%;
-        height: 15px;
-        background: #ddd;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    .bar div {
-        height: 100%;
-        width: 0%;
-        background: gold;
-        transition: width 0.4s ease;
-    }
-
-    #curryAnimation {
-        display: none;
-        font-size: 24px;
-        margin-top: 20px;
-        color: gold;
-        animation: shoot 1s ease;
-    }
-
-    @keyframes shoot {
-        0% { transform: scale(0.5); opacity: 0; }
-        50% { transform: scale(1.3); opacity: 1; }
-        100% { transform: scale(1); opacity: 1; }
-    }
-</style>
-
-
-<body>
-
-<!-- Your poll wrapped inside the card -->
-<div class="card">
-  <style>
-    .card img {
-        max-width: 100%;
-        height: auto;
-        display: block;
-    }
-
-    .poll-options img {
-        width: 100px;
-      max-width: 100px;
-        height: auto;
-    }
-
-    .card {
-        overflow: hidden;
-    }
-
-    /* your other CSS here */
-</style>
-
-<section id="poll" style="margin-top:40px;">
-    <h2>🔥 Ultimate Shooter Poll (God‑Tier Version)</h2>
-    <p>Choose the greatest shooter of all time.</p>
-
-    <div class="poll-options">
-        <div class="option" onclick="castVote('curry')">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVFiVn_wj8y8yr3USLBqdeTJRS7FBMZzIzYVy6KQtziA&s=10" alt="Curry">
-            <button>Stephen Curry</button>
+            <div class="option" onclick="castVote('ray')">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUxxPJB5nhY9qUDJuJ5V7lt1oUXmjNCMtOqpf3j-lzYg&s=10" alt="Ray Allen">
+                <button>Ray Allen</button>
+            </div>
         </div>
 
-        <div class="option" onclick="castVote('klay')">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT22-y2mZ2Gtq9gTsfYtfjB5Zqunuii6XQIyVr3PgXLvg&s=10" alt="Klay">
-            <button>Klay Thompson</button>
+        <h3>Results:</h3>
+
+        <div class="result">
+            <span>Curry</span>
+            <div class="bar"><div id="curryBar"></div></div>
+            <span id="curryPercent">0%</span>
         </div>
 
-        <div class="option" onclick="castVote('ray')">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUxxPJB5nhY9qUDJuJ5V7lt1oUXmjNCMtOqpf3j-lzYg&s=10" alt="Ray Allen">
-            <button>Ray Allen</button>
+        <div class="result">
+            <span>Klay</span>
+            <div class="bar"><div id="klayBar"></div></div>
+            <span id="klayPercent">0%</span>
         </div>
+
+        <div class="result">
+            <span>Ray Allen</span>
+            <div class="bar"><div id="rayBar"></div></div>
+            <span id="rayPercent">0%</span>
+        </div>
+
+        <h3>Leaderboard:</h3>
+        <ul id="leaderboard"></ul>
+
+        <button onclick="resetPoll()" style="margin-top:20px;background:red;color:white;padding:10px;border:none;border-radius:5px;cursor:pointer;">
+            Reset Poll
+        </button>
+
+        <div id="curryAnimation">🏀💥 CURRY FOR THREEEEEE!!!</div>
+      </div>
+
+      <!-- Wallpapers -->
+      <div class="card" id="wallpapers">
+        <h3>Curry Wallpapers</h3>
+        <p>Right‑click → Save image to use as wallpaper.</p>
+        <div class="gallery">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY5oeuIBIaXWznSj4r44CJNJsMmgti-v5THgfsyk8GZQ&s=10" alt="Wallpaper 1">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNpfK-KYWoMLdatIQGf_jcjvexdec3mwAnBqAxa-xCUA&s=10" alt="Wallpaper 2">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDzXFmPKlbFCbV_4PAFyuwlFj1j3aQg0kosWhRECn_kQ&s=10" alt="Wallpaper 3">
+        </div>
+      </div>
+
+      <!-- Leaderboard -->
+      <div class="card" id="leaderboard-section">
+        <h3>Curry Fan Leaderboard</h3>
+        <p>Add your name and your "Curry fan level" (1–100):</p>
+        <input class="input-small" id="fanName" placeholder="Your name">
+        <input class="input-small" id="fanLevel" type="number" min="1" max="100" placeholder="Level">
+        <button class="btn" onclick="addFan()">Add</button>
+        <ul id="leaderboardList" class="leaderboard-list"></ul>
+      </div>
+
+      <!-- Extras -->
+      <div class="card" id="extras">
+        <h3>Extras / Notes</h3>
+        <p>Ideas you can add later:</p>
+        <ul>
+          <li>Game log page with scores and threes.</li>
+          <li>Embed YouTube highlight playlist.</li>
+          <li>Polls: "Best Curry moment?"</li>
+          <li>Fan comments section (if your host allows it).</li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="card" id="contact">
+        <h3>Contact / Socials</h3>
+        <p>Instagram: @stephencurry30</p>
+        <p>Twitter/X: @StephenCurry30</p>
+        <p>Curry Brand: Under Armour</p>
+        <p>Site Owner: Da Goat 🐐</p>
+      </div>
+
     </div>
+  </div>
 
-    <h3>Results:</h3>
+  <footer>
+    © 2026 Stephen Curry Ultimate Fan Hub · Built by Da Goat
+  </footer>
 
-    <div class="result">
-        <span>Curry</span>
-        <div class="bar"><div id="curryBar"></div></div>
-        <span id="curryPercent">0%</span>
-    </div>
+  <div class="mode-btn" onclick="toggleMode()">Toggle Light/Dark</div>
 
-    <div class="result">
-        <span>Klay</span>
-        <div class="bar"><div id="klayBar"></div></div>
-        <span id="klayPercent">0%</span>
-    </div>
-
-    <div class="result">
-        <span>Ray Allen</span>
-        <div class="bar"><div id="rayBar"></div></div>
-        <span id="rayPercent">0%</span>
-    </div>
-
-    <h3>Leaderboard:</h3>
-    <ul id="leaderboard"></ul>
-
-    <button onclick="resetPoll()" style="margin-top:20px;background:red;color:white;padding:10px;border:none;border-radius:5px;cursor:pointer;">
-        Reset Poll
-    </button>
-
-    <div id="curryAnimation">🏀💥 CURRY FOR THREEEEEE!!!</div>
-</section>
-</div>
-
-
-<script>
+  <script>
     let votes = JSON.parse(localStorage.getItem("pollVotes")) || {
         curry: 0,
         klay: 0,
@@ -520,64 +540,7 @@ l..<!DOCTYPE html>
     }
 
     updatePoll();
-</script>
 
-</body>
-
-<body>
-
-      <!-- Wallpapers -->
-      <div class="card" id="wallpapers">
-        <h3>Curry Wallpapers</h3>
-        <p>Right‑click → Save image to use as wallpaper.</p>
-        <div class="gallery">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY5oeuIBIaXWznSj4r44CJNJsMmgti-v5THgfsyk8GZQ&s=10" alt="Wallpaper 1">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNpfK-KYWoMLdatIQGf_jcjvexdec3mwAnBqAxa-xCUA&s=10" alt="Wallpaper 2">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDzXFmPKlbFCbV_4PAFyuwlFj1j3aQg0kosWhRECn_kQ&s=10" alt="Wallpaper 3">
-        </div>
-      </div>
-
-      <!-- Leaderboard -->
-      <div class="card" id="leaderboard">
-        <h3>Curry Fan Leaderboard</h3>
-        <p>Add your name and your “Curry fan level” (1–100):</p>
-        <input class="input-small" id="fanName" placeholder="Your name">
-        <input class="input-small" id="fanLevel" type="number" min="1" max="100" placeholder="Level">
-        <button class="btn" onclick="addFan()">Add</button>
-        <ul id="leaderboardList" class="leaderboard-list"></ul>
-      </div>
-
-      <!-- Extras -->
-      <div class="card" id="extras">
-        <h3>Extras / Notes</h3>
-        <p>Ideas you can add later:</p>
-        <ul>
-          <li>Game log page with scores and threes.</li>
-          <li>Embed YouTube highlight playlist.</li>
-          <li>Polls: “Best Curry moment?”</li>
-          <li>Fan comments section (if your host allows it).</li>
-        </ul>
-      </div>
-
-      <!-- Contact -->
-      <div class="card" id="contact">
-        <h3>Contact / Socials</h3>
-        <p>Instagram: @stephencurry30</p>
-        <p>Twitter/X: @StephenCurry30</p>
-        <p>Curry Brand: Under Armour</p>
-        <p>Site Owner: Da Goat 🐐</p>
-      </div>
-
-    </div>
-  </div>
-
-  <footer>
-    © 2026 Stephen Curry Ultimate Fan Hub · Built by Da Goat
-  </footer>
-
-  <div class="mode-btn" onclick="toggleMode()">Toggle Light/Dark</div>
-
-  <script>
     // Light/Dark mode
     function toggleMode() {
       document.body.classList.toggle('light');
