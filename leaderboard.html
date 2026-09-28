@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leaderboard - Stephen Curry Ultimate Fan Hub</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; background: #305CDE; color: #f9fafb; transition: background 0.3s, color 0.3s; }
+    body.light { background: #f1f5f9; color: #0f172a; }
+    header { background: linear-gradient(135deg, #FFDD00, #0008A3); padding: 25px; text-align: center; color: #0f172a; }
+    header img { width: 120px; border-radius: 50%; margin-bottom: 10px; border: 3px solid #0f172a; }
+    nav { background: #1e293b; padding: 12px; text-align: center; position: sticky; top: 0; z-index: 10; overflow-x: auto; white-space: nowrap; }
+    nav a { color: #e2e8f0; margin: 0 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; display: inline-block; }
+    nav a:hover { color: #facc15; }
+    nav a.active { color: #facc15; border-bottom: 2px solid #facc15; padding-bottom: 2px; }
+    .container { max-width: 900px; margin: auto; padding: 20px; }
+    .page-title { text-align: center; margin: 30px 0; font-size: 2.5rem; color: #facc15; }
+    .leaderboard-box {
+      background: #1e293b;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+    body.light .leaderboard-box { background: #e2e8f0; }
+    .form-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    input {
+      background: #fff;
+      color: #0f172a;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 12px;
+      width: 220px;
+    }
+    button {
+      background: #facc15;
+      color: #0f172a;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #334155;
+    }
+    th { background: #0f172a; color: #facc15; }
+    body.light th { background: #cbd5f5; color: #0f172a; }
+    td { color: #cbd5f5; }
+    body.light td { color: #475569; }
+    .mode-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: #facc15;
+      color: #0f172a;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      font-size: 0.9rem;
+    }
+    footer { text-align: center; padding: 15px; background: #020617; font-size: 0.9rem; color: #9ca3af; margin-top: 40px; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUo9_A3atNAaIezGAS3u-605y5f5hfw5LF4k-0infhbw&s=10" alt="Curry Logo">
+    <h1>Stephen Curry Ultimate Fan Hub</h1>
+    <p>The Greatest Shooter Ever · News · Stats · Highlights · Fans</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="highlights.html">Highlights</a>
+    <a href="stats.html">Stats</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="tracker.html">3PT Tracker</a>
+    <a href="poll.html">Poll</a>
+    <a href="wallpapers.html">Wallpapers</a>
+    <a href="leaderboard.html" class="active">Leaderboard</a>
+    <a href="extras.html">Extras</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="container">
+    <h2 class="page-title">🏆 Fan Leaderboard</h2>
+
+    <div class="leaderboard-box">
+      <div class="form-row">
+        <input id="playerName" type="text" placeholder="Enter your name">
+        <button onclick="addPlayer()">Add to leaderboard</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Fan Level</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <footer>© 2026 Stephen Curry Ultimate Fan Hub · Built by Da Goat</footer>
+  <div class="mode-btn" onclick="toggleMode()">🌙 Toggle Light/Dark</div>
+
+  <script>
+    const defaultScores = [
+      { name: "Steph Fan", fanLevel: 9800 },
+      { name: "Chef Mode", fanLevel: 8700 },
+      { name: "3PT Wizard", fanLevel: 7600 },
+      { name: "Curry Crew", fanLevel: 6400 }
+    ];
+
+    function loadBoard() {
+      const board = JSON.parse(localStorage.getItem('curryLeaderboard') || '[]');
+      const list = board.length ? board : defaultScores;
+      list.sort((a, b) => b.fanLevel - a.fanLevel);
+      const tbody = document.getElementById('leaderboardBody');
+      tbody.innerHTML = '';
+      list.forEach((entry, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${entry.name}</td>
+          <td>${entry.fanLevel}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function addPlayer() {
+      const input = document.getElementById('playerName');
+      const name = input.value.trim();
+      if (!name) return;
+      const board = JSON.parse(localStorage.getItem('curryLeaderboard') || '[]');
+      const newEntry = { name, fanLevel: Math.floor(Math.random() * 9000) + 2000 };
+      board.push(newEntry);
+      localStorage.setItem('curryLeaderboard', JSON.stringify(board));
+      input.value = '';
+      loadBoard();
+    }
+
+    function toggleMode() {
+      document.body.classList.toggle('light');
+      localStorage.setItem('darkMode', !document.body.classList.contains('light'));
+    }
+    if (localStorage.getItem('darkMode') === 'false') document.body.classList.add('light');
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('nav a').forEach(link => {
+        link.classList.toggle('active', link.href.includes(currentPage));
+      });
+      loadBoard();
+    });
+  </script>
+</body>
+</html>
