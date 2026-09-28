@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Season Stats - Stephen Curry Ultimate Fan Hub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #305CDE;
+      color: #f9fafb;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.light {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    header {
+      background: linear-gradient(135deg, #FFDD00, #0008A3);
+      padding: 25px;
+      text-align: center;
+      color: #0f172a;
+    }
+
+    header img {
+      width: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 3px solid #0f172a;
+    }
+
+    nav {
+      background: #1e293b;
+      padding: 12px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: #e2e8f0;
+      margin: 0 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      color: #facc15;
+    }
+
+    nav a.active {
+      color: #facc15;
+      border-bottom: 2px solid #facc15;
+      padding-bottom: 2px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 30px 0;
+      font-size: 2.5rem;
+      color: #facc15;
+    }
+
+    .stats-overview {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .stat-box {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      animation: fadeIn 0.8s ease;
+      transition: transform 0.3s;
+    }
+
+    .stat-box:hover {
+      transform: translateY(-5px);
+    }
+
+    body.light .stat-box {
+      background: #e2e8f0;
+    }
+
+    .stat-value {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #facc15;
+      margin-bottom: 5px;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: #cbd5f5;
+    }
+
+    body.light .stat-label {
+      color: #475569;
+    }
+
+    .stats-table {
+      background: #1e293b;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      margin-bottom: 30px;
+      animation: fadeIn 0.8s ease;
+    }
+
+    body.light .stats-table {
+      background: #e2e8f0;
+    }
+
+    .stats-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .stats-table th {
+      background: #0f172a;
+      color: #facc15;
+      padding: 15px;
+      text-align: left;
+      font-weight: bold;
+    }
+
+    body.light .stats-table th {
+      background: #cbd5f5;
+      color: #0f172a;
+    }
+
+    .stats-table td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #334155;
+      color: #cbd5f5;
+    }
+
+    body.light .stats-table td {
+      color: #475569;
+      border-bottom: 1px solid #cbd5f5;
+    }
+
+    .stats-table tr:hover {
+      background: #334155;
+    }
+
+    body.light .stats-table tr:hover {
+      background: #cbd5f5;
+    }
+
+    .comparison-section {
+      background: #1e293b;
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    }
+
+    body.light .comparison-section {
+      background: #e2e8f0;
+    }
+
+    .comparison-section h3 {
+      color: #facc15;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+
+    .comparison-item {
+      background: #0f172a;
+      padding: 15px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    body.light .comparison-item {
+      background: #cbd5f5;
+    }
+
+    .mode-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: #facc15;
+      color: #0f172a;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #020617;
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-top: 40px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUo9_A3atNAaIezGAS3u-605y5f5hfw5LF4k-0infhbw&s=10" alt="Curry Logo">
+    <h1>Stephen Curry Ultimate Fan Hub</h1>
+    <p>The Greatest Shooter Ever · News · Stats · Highlights · Fans</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="highlights.html">Highlights</a>
+    <a href="stats.html" class="active">Stats</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="tracker.html">3PT Tracker</a>
+    <a href="poll.html">Poll</a>
+    <a href="wallpapers.html">Wallpapers</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="extras.html">Extras</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="container">
+    <h2 class="page-title">📊 Season Statistics</h2>
+
+    <div class="stats-overview">
+      <div class="stat-box">
+        <div class="stat-value">32.5</div>
+        <div class="stat-label">Points Per Game</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">8.2</div>
+        <div class="stat-label">Assists Per Game</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">52.3%</div>
+        <div class="stat-label">3-Point %</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">46.8%</div>
+        <div class="stat-label">Field Goal %</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">5.4</div>
+        <div class="stat-label">Rebounds Per Game</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-value">1.2</div>
+        <div class="stat-label">Steals Per Game</div>
+      </div>
+    </div>
+
+    <div class="stats-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Game</th>
+            <th>Points</th>
+            <th>3-Pointers</th>
+            <th>Assists</th>
+            <th>Rebounds</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>vs Lakers</td>
+            <td>38</td>
+            <td>11/20</td>
+            <td>7</td>
+            <td>4</td>
+            <td>W (+12)</td>
+          </tr>
+          <tr>
+            <td>vs Celtics</td>
+            <td>35</td>
+            <td>12/18</td>
+            <td>9</td>
+            <td>6</td>
+            <td>W (+8)</td>
+          </tr>
+          <tr>
+            <td>vs Suns</td>
+            <td>31</td>
+            <td>9/16</td>
+            <td>8</td>
+            <td>5</td>
+            <td>W (+5)</td>
+          </tr>
+          <tr>
+            <td>vs Mavericks</td>
+            <td>29</td>
+            <td>8/17</td>
+            <td>6</td>
+            <td>4</td>
+            <td>W (+3)</td>
+          </tr>
+          <tr>
+            <td>vs Nuggets</td>
+            <td>36</td>
+            <td>13/21</td>
+            <td>10</td>
+            <td>5</td>
+            <td>W (+15)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="comparison-section">
+      <h3>Career Comparison: This Season vs All-Time Averages</h3>
+      <div class="comparison-grid">
+        <div class="comparison-item">
+          <span>Points Per Game</span>
+          <span>32.5 vs 25.6</span>
+        </div>
+        <div class="comparison-item">
+          <span>3-Point Percentage</span>
+          <span>52.3% vs 42.8%</span>
+        </div>
+        <div class="comparison-item">
+          <span>Assists Per Game</span>
+          <span>8.2 vs 6.4</span>
+        </div>
+        <div class="comparison-item">
+          <span>Field Goal Percentage</span>
+          <span>46.8% vs 48.2%</span>
+        </div>
+        <div class="comparison-item">
+          <span>Rebounds Per Game</span>
+          <span>5.4 vs 4.8</span>
+        </div>
+        <div class="comparison-item">
+          <span>Steals Per Game</span>
+          <span>1.2 vs 1.3</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 Stephen Curry Ultimate Fan Hub · Built by Da Goat
+  </footer>
+
+  <div class="mode-btn" onclick="toggleMode()">🌙 Toggle Light/Dark</div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('light');
+      localStorage.setItem('darkMode', !document.body.classList.contains('light'));
+    }
+
+    if (localStorage.getItem('darkMode') === 'false') {
+      document.body.classList.add('light');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('nav a').forEach(link => {
+        if (link.href.includes(currentPage)) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
