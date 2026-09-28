@@ -873,18 +873,78 @@
       document.body.classList.toggle('light');
     }
 
-    // ===== AUTO-REFRESH NEWS =====
+    // ===== AUTO-REFRESH NEWS (EXPANDED) =====
     function refreshNews() {
       const updates = [
+        // Training & Practice
         "Curry working on new off-ball movement drills.",
-        "New Curry Brand shoes rumored for release.",
         "Steph spotted training with rookies after practice.",
-        "Curry hosting charity event with Eat. Learn. Play.",
+        "Curry fine-tuning his handle and footwork.",
+        "Steph mentoring young guards at practice.",
+        "Curry hitting 100+ threes in post-game workout.",
+        "Warriors staff: Steph's conditioning is elite this season.",
+        "Curry perfecting his catch-and-shoot mechanics.",
+        "Steph running advanced footwork drills with trainers.",
+        
+        // Brand & Business
+        "New Curry Brand shoes rumored for release.",
+        "Curry Brand announces limited-edition collaboration.",
+        "Stephen Curry signature shoe hits $1 billion in sales.",
+        "Curry extends partnership with Under Armour through 2030.",
+        "New Curry Brand apparel line coming next month.",
+        
+        // Team & Games
         "Warriors preparing new offensive sets for Curry.",
         "Curry locked in from deep during scrimmage.",
-        "Steph mentoring young guards at practice.",
-        "Curry fine-tuning his handle and footwork.",
-        "Stephen Curry officially agreed to a two-year, $116 million contract extension with the Golden State Warriors.",
+        "Stephen Curry officially agreed to a two-year, $116 million contract extension.",
+        "Steph hits 10 threes in preseason prep game.",
+        "Warriors' new plays maximize Curry's spacing advantage.",
+        "Curry dominates in Warriors' first exhibition game.",
+        
+        // Charity & Community
+        "Curry hosting charity event with Eat. Learn. Play.",
+        "Steph donates $1M to Oakland youth basketball programs.",
+        "Curry Foundation launches new STEM initiative.",
+        "Stephen Curry visits children's hospital, lifts spirits.",
+        "Curry leads Warriors community service day.",
+        
+        // Records & Achievements
+        "Curry inches closer to 4,000 career threes made.",
+        "Steph ranks #1 in all-time three-pointers — 4,087!",
+        "Curry's deep range extends beyond NBA arc.",
+        "Steph sets new record for most 40+ point games.",
+        "Curry becomes first player to hit 5,000 three-pointers.",
+        
+        // Game Performances
+        "40-point performance with 8 threes in Warriors victory.",
+        "Behind-the-back dime to Klay on transition break.",
+        "Half-court warm-up shots still automatic.",
+        "Curry hits the dagger with 2 seconds left.",
+        "Steph puts on 3-point clinic: 12 made threes.",
+        "Curry's clutch shooting leads Warriors to overtime win.",
+        
+        // Personal & Family
+        "Curry Family Foundation grants scholarships to 100 students.",
+        "Steph celebrates daughter Riley's basketball progress.",
+        "Ayesha & Steph announce new business venture.",
+        "Curry family donates to local Bay Area charities.",
+        
+        // Analytics & Stats
+        "Curry's +/- rating leads league at +18.5.",
+        "Steph shooting 50-40-90 club standards this season.",
+        "Curry's usage rate down but efficiency up 5%.",
+        "Advanced metrics: Curry is MVP candidate.",
+        
+        // International & Events
+        "Curry preparing for upcoming international exhibition.",
+        "Steph headline act at All-Star Weekend 3PT Contest.",
+        "Curry invited to participate in global basketball summit.",
+        
+        // Highlights & Moments
+        "Curry hits 3-pointer from logo — crowd goes wild!",
+        "Steph puts defense in spin cycle with ankle-breaker.",
+        "Curry's shimmy celebration trending on social media.",
+        "Behind-the-back three from Steph is viral sensation.",
       ];
       document.getElementById("liveNews").innerText =
         updates[Math.floor(Math.random() * updates.length)];
