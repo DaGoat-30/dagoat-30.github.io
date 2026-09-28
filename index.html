@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <title>Stephen Curry Ultimate Fan Hub</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
@@ -38,6 +44,8 @@
       position: sticky;
       top: 0;
       z-index: 10;
+      overflow-x: auto;
+      white-space: nowrap;
     }
 
     nav a {
@@ -46,23 +54,33 @@
       text-decoration: none;
       font-weight: bold;
       font-size: 0.9rem;
+      display: inline-block;
     }
 
     nav a:hover {
       color: #facc15;
     }
 
+    nav a.active {
+      color: #facc15;
+      border-bottom: 2px solid #facc15;
+      padding-bottom: 2px;
+    }
+
     .hero {
-      padding: 25px 20px;
+      padding: 40px 20px;
       text-align: center;
+      background: linear-gradient(135deg, rgba(255, 221, 0, 0.1), rgba(0, 8, 163, 0.1));
     }
 
     .hero h2 {
       margin-bottom: 8px;
+      font-size: 2.5rem;
+      color: #facc15;
     }
 
     .container {
-      max-width: 1050px;
+      max-width: 1200px;
       margin: auto;
       padding: 20px;
     }
@@ -80,6 +98,16 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.4);
       animation: fadeIn 0.8s ease;
       overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(250, 204, 21, 0.3);
     }
 
     body.light .card {
@@ -89,7 +117,23 @@
 
     .card h3 {
       margin-top: 0;
+      margin-bottom: 10px;
       color: #facc15;
+    }
+
+    .card p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #cbd5f5;
+    }
+
+    body.light .card p {
+      color: #475569;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
     }
 
     .gallery {
@@ -218,357 +262,6 @@
 
     .option {
         text-align: center;
-        cursor: pointer;
-        flex: 0 1 120px;
-        overflow: hidden;
-    }
-
-    .option img {
-        width: 120px;
-        height: 120px;
-        border-radius: 10px;
-        margin-bottom: 10px;
-        transition: transform 0.3s ease;
-        object-fit: cover;
-        display: block;
-        max-width: 100%;
-    }
-
-    .option img:hover {
-        transform: scale(1.05);
-    }
-
-    .result {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin: 10px 0;
-    }
-
-    .bar {
-        width: 60%;
-        height: 15px;
-        background: #ddd;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    .bar div {
-        height: 100%;
-        width: 0%;
-        background: gold;
-        transition: width 0.4s ease;
-    }
-
-    #curryAnimation {
-        display: none;
-        font-size: 24px;
-        margin-top: 20px;
-        color: gold;
-        animation: shoot 1s ease;
-    }
-
-    @keyframes shoot {
-        0% { transform: scale(0.5); opacity: 0; }
-        50% { transform: scale(1.3); opacity: 1; }
-        100% { transform: scale(1); opacity: 1; }
-    }
-
-    /* 3PT TRACKER UPGRADES */
-    .tracker-stats {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin: 15px 0;
-      font-size: 0.9rem;
-    }
-
-    .stat-box {
-      background: #0f172a;
-      padding: 10px;
-      border-radius: 8px;
-      text-align: center;
-      border: 2px solid #facc15;
-    }
-
-    body.light .stat-box {
-      background: #cbd5e1;
-      color: #0f172a;
-    }
-
-    .stat-value {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: #facc15;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
-      color: #94a3b8;
-      margin-top: 4px;
-    }
-
-    body.light .stat-label {
-      color: #475569;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 20px;
-      background: #0f172a;
-      border-radius: 10px;
-      overflow: hidden;
-      margin: 12px 0;
-      border: 2px solid #facc15;
-    }
-
-    body.light .progress-bar {
-      background: #cbd5e1;
-    }
-
-    .progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, #facc15, #fbbf24);
-      width: 0%;
-      transition: width 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      color: #0f172a;
-      font-weight: bold;
-    }
-
-    .game-sessions {
-      margin-top: 15px;
-      max-height: 200px;
-      overflow-y: auto;
-      background: #0f172a;
-      border-radius: 8px;
-      padding: 10px;
-    }
-
-    body.light .game-sessions {
-      background: #cbd5e1;
-    }
-
-    .game-item {
-      background: #1e293b;
-      padding: 8px;
-      margin: 6px 0;
-      border-radius: 6px;
-      font-size: 0.85rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    body.light .game-item {
-      background: #e2e8f0;
-    }
-
-    .game-item .made {
-      color: #4ade80;
-      font-weight: bold;
-    }
-
-    .shot-log {
-      margin-top: 15px;
-      max-height: 150px;
-      overflow-y: auto;
-      background: #0f172a;
-      border-radius: 8px;
-      padding: 8px;
-      font-size: 0.8rem;
-    }
-
-    body.light .shot-log {
-      background: #cbd5e1;
-    }
-
-    .shot-item {
-      padding: 4px;
-      margin: 2px 0;
-      background: #1e293b;
-      border-left: 3px solid #4ade80;
-      border-radius: 4px;
-    }
-
-    body.light .shot-item {
-      background: #e2e8f0;
-    }
-
-    .comparison-box {
-      background: #0f172a;
-      padding: 12px;
-      border-radius: 8px;
-      margin-top: 12px;
-      text-align: center;
-      border: 2px solid #fbbf24;
-    }
-
-    body.light .comparison-box {
-      background: #cbd5e1;
-    }
-
-    .comparison-text {
-      font-size: 0.9rem;
-      margin: 6px 0;
-    }
-
-    .comparison-text.better {
-      color: #4ade80;
-      font-weight: bold;
-    }
-
-    .comparison-text.worse {
-      color: #f87171;
-    }
-
-    .comparison-text.equal {
-      color: #facc15;
-    }
-
-    /* QUIZ STYLES */
-    .quiz-container {
-      background: #0f172a;
-      padding: 12px;
-      border-radius: 8px;
-      margin: 12px 0;
-    }
-
-    body.light .quiz-container {
-      background: #cbd5e1;
-    }
-
-    .quiz-progress {
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-      color: #facc15;
-      font-weight: bold;
-    }
-
-    .quiz-question {
-      background: #1e293b;
-      padding: 12px;
-      border-radius: 6px;
-      margin: 8px 0;
-      border-left: 3px solid #facc15;
-    }
-
-    body.light .quiz-question {
-      background: #e2e8f0;
-    }
-
-    .quiz-options {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin: 10px 0;
-    }
-
-    .quiz-option {
-      background: #0f172a;
-      padding: 8px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-      border: 2px solid #475569;
-      transition: all 0.3s;
-      font-size: 0.85rem;
-    }
-
-    body.light .quiz-option {
-      background: #cbd5e1;
-    }
-
-    .quiz-option:hover {
-      border-color: #facc15;
-      background: #1e293b;
-    }
-
-    body.light .quiz-option:hover {
-      background: #e2e8f0;
-      border-color: #facc15;
-    }
-
-    .quiz-option.selected {
-      border-color: #facc15;
-      background: #1e293b;
-    }
-
-    .quiz-option.correct {
-      border-color: #4ade80;
-      background: #0f3a1d;
-    }
-
-    .quiz-option.incorrect {
-      border-color: #ef4444;
-      background: #3d0f0f;
-    }
-
-    .quiz-results {
-      background: #0f172a;
-      padding: 15px;
-      border-radius: 8px;
-      text-align: center;
-      margin: 12px 0;
-      border: 2px solid #facc15;
-    }
-
-    body.light .quiz-results {
-      background: #cbd5e1;
-    }
-
-    .quiz-score {
-      font-size: 2rem;
-      font-weight: bold;
-      color: #facc15;
-      margin: 10px 0;
-    }
-
-    .quiz-score.perfect {
-      color: #4ade80;
-    }
-
-    .quiz-score.good {
-      color: #facc15;
-    }
-
-    .quiz-score.poor {
-      color: #f87171;
-    }
-
-    .quiz-message {
-      margin: 10px 0;
-      font-size: 0.95rem;
-    }
-
-    .spicy-round {
-      background: linear-gradient(135deg, rgba(250, 204, 21, 0.12), rgba(239, 68, 68, 0.08));
-      border: 2px solid #facc15;
-      border-radius: 8px;
-      padding: 15px;
-      margin-top: 18px;
-      text-align: left;
-    }
-
-    .spicy-round h4 {
-      margin-top: 0;
-      color: #facc15;
-    }
-
-    .spicy-answer {
-      margin-top: 10px;
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: 6px;
-      padding: 10px;
-      color: #f8fafc;
-      font-weight: bold;
-    }
-
-    body.light .spicy-answer {
-      background: rgba(15, 23, 42, 0.06);
-      color: #0f172a;
     }
   </style>
 </head>
@@ -581,251 +274,111 @@
   </header>
 
   <nav>
-    <a href="#news">News</a>
-    <a href="#highlights">Highlights</a>
-    <a href="#stats">Stats</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#quiz">Quiz</a>
-    <a href="#timeline">Timeline</a>
-    <a href="#tracker">3PT Tracker</a>
-    <a href="#wallpapers">Wallpapers</a>
-    <a href="#leaderboard">Leaderboard</a>
-    <a href="#extras">Extras</a>
-    <a href="#contact">Contact</a>
+    <a href="index.html" class="active">Home</a>
+    <a href="news.html">News</a>
+    <a href="highlights.html">Highlights</a>
+    <a href="stats.html">Stats</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="tracker.html">3PT Tracker</a>
+    <a href="poll.html">Poll</a>
+    <a href="wallpapers.html">Wallpapers</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="extras.html">Extras</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
   <section class="hero">
     <h2>Locked in on every three, every record, every moment.</h2>
-    <p class="small-text">Site owner: Da Goat 🐐 · Refresh often, stay Curry‑pilled.</p>
+    <p class="small-text">Site owner: Da Goat 🐐 · Refresh often, stay Curry-pilled.</p>
   </section>
 
   <div class="container">
-
     <div class="grid">
+      <a href="news.html" class="card">
+        <div class="card-icon">📰</div>
+        <h3>Live Updates</h3>
+        <p>Auto-refreshing Curry news and updates. Stay in the loop with the latest happening in Steph's world.</p>
+        <p class="small-text">→ Click to explore</p>
+      </a>
 
-      <!-- Live News -->
-      <div class="card" id="news">
-        <h3>Live Updates (Auto‑Refresh)</h3>
-        <p id="liveNews">Loading Curry news...</p>
-        <p class="small-text">Updates rotate every 5 seconds.</p>
-      </div>
-
-      <!-- Highlights -->
-      <div class="card" id="highlights">
+      <a href="highlights.html" class="card">
+        <div class="card-icon">🎬</div>
         <h3>Recent Highlights</h3>
-        <p>• 40‑point performance with 8 threes.</p>
-        <p>• Behind‑the‑back dime to Klay.</p>
-        <p>• Half‑court warm‑up shots still automatic.</p>
-        <p class="small-text">Add your own highlight text if you want.</p>
-      </div>
+        <p>Epic moments from Curry's recent games including performances, assists, and cold-blooded shots.</p>
+        <p class="small-text">→ Click to explore</p>
+      </a>
 
-      <!-- Stats -->
-      <div class="card" id="stats">
-        <h3>Season Stats (Demo)</h3>
-        <p>• PPG: 29.8</p>
-        <p>• APG: 6.3</p>
-        <p>• 3PT%: 42.7%</p>
-        <p>• Games Played: 12</p>
-        <p class="small-text">You can edit these numbers when the real season starts.</p>
-      </div>
+      <a href="stats.html" class="card">
+        <div class="card-icon">📊</div>
+        <h3>Season Stats</h3>
+        <p>In-depth statistics including PPG, APG, 3PT%, and more. Track Steph's performance this season.</p>
+        <p class="small-text">→ Click to explore</p>
+      </a>
 
-      <!-- Gallery -->
-      <div class="card" id="gallery">
+      <a href="gallery.html" class="card">
+        <div class="card-icon">🖼️</div>
         <h3>Highlight Gallery</h3>
-        <div class="gallery">
-          <img src="https://i.imgur.com/5mQf7rM.jpeg" alt="Curry 1">
-          <img src="https://i.imgur.com/3m8xk0T.jpeg" alt="Curry 2">
-          <img src="https://i.imgur.com/0pJv1rQ.jpeg" alt="Curry 3">
-        </div>
-        <p class="small-text">You can swap these links for any Curry pics you like.</p>
-      </div>
+        <p>Visual showcase of Curry's greatest moments, iconic celebrations, and unforgettable plays.</p>
+        <p class="small-text">→ Click to explore</p>
+      </a>
 
-      <!-- Quiz UPGRADED -->
-      <div class="card" id="quiz">
-        <h3>🏀 Curry Fan Quiz (UPGRADED)</h3>
-        <p>Test how locked in you are! Answer all 10 questions to see results. 👀</p>
-        
-        <div class="quiz-container" id="quizContainer">
-          <div class="quiz-progress">
-            Question <span id="currentQuestion">1</span>/10
-          </div>
-          <div id="quizContent"></div>
-          <div style="margin-top: 12px; text-align: center;">
-            <button class="btn" id="nextBtn" onclick="nextQuestion()" style="display:none;">Next Question →</button>
-            <button class="btn btn-danger" onclick="resetQuiz()">Reset Quiz</button>
-          </div>
-        </div>
+      <a href="quiz.html" class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Curry Fan Quiz</h3>
+        <p>Test your Curry knowledge with 10 challenging questions per round. Get graded and unlock spicy bonus questions!</p>
+        <p class="small-text">→ Click to explore</p>
+      </a>
 
-        <div id="quizResults" style="display:none;"></div>
-      </div>
+      <a href="timeline.html" class="card">
+        <div class="card-icon">📅</div>
+        <h3>Career Timeline</h3>
+        <p>Journey through Steph's career from Davidson to becoming the NBA's all-time 3-point leader.</p>
+        <p class="small-text">→ Click to explore</p>
+      </a>
 
-      <!-- Timeline -->
-      <div class="card" id="timeline">
-        <h3>Curry Career Timeline</h3>
-        <p>• 2008 - Led Davidson to the Elite Eight of the NCAA Tornament, becoming a national sensation 
-        <p>• 2009 - Drafted by Golden State Warriors</p>
-        <p>• 2011 - Maried his high school sweetheart, Ayesha Alexander.
-        <p>• 2013 - Set a then-record for the most three-pointers made in a single season (272)  
-        <p>• 2015 - First NBA Championship & MVP</p>
-        <p>• 2016 - Unanimous MVP, 73‑win season</p>
-        <p>• 2017-2018 - Back‑to‑back titles with KD</p>
-        <p>• 2021 - Surpassed Ray Allen to become the NBA's all-time leader in career three-pointers made
-        <p>• 2022 - Finals MVP vs Celtics</p>
-        <p>• 2024 - Absolutely fried the Persian and France team. Won a gold medal with the United States men's basketball team at the Paris Olympic Games
-      </div>
+      <a href="tracker.html" class="card">
+        <div class="card-icon">🏀</div>
+        <h3>3PT Tracker</h3>
+        <p>Track your personal 3-pointers made in games. Compare stats, view history, and compete with Curry!</p>
+        <p class="small-text">→ Click to explore</p>
+      </a>
 
-      <!-- 3PT Tracker UPGRADED -->
-      <div class="card" id="tracker">
-        <h3>🏀 3‑Pointer Tracker (UPGRADED)</h3>
-        
-        <!-- Current Game Counter -->
-        <div>
-          <p style="margin: 0 0 10px 0;"><strong>Current Game:</strong></p>
-          <p style="font-size: 2.5rem; font-weight: bold; color: #facc15; text-align: center; margin: 10px 0;">
-            <span id="threeCount">0</span>
-          </p>
-        </div>
+      <a href="poll.html" class="card">
+        <div class="card-icon">🔥</div>
+        <h3>Ultimate Shooter Poll</h3>
+        <p>Vote for the greatest shooter of all time: Curry, Klay Thompson, or Ray Allen. See live results!</p>
+        <p class="small-text">→ Click to explore</p>
+      </a>
 
-        <!-- Progress Bar vs Curry -->
-        <div class="comparison-box">
-          <p class="small-text" style="margin: 0;">vs Curry's Avg (42.7%)</p>
-          <p style="font-size: 0.9rem; margin: 6px 0;">Your Current %: <span id="yourPercent">0%</span></p>
-          <div class="progress-bar">
-            <div class="progress-fill" id="progressFill">0%</div>
-          </div>
-          <div id="comparisonResult"></div>
-        </div>
-
-        <!-- Stats Grid -->
-        <div class="tracker-stats">
-          <div class="stat-box">
-            <div class="stat-value" id="totalMade">0</div>
-            <div class="stat-label">Total Made</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-value" id="avgPerGame">0</div>
-            <div class="stat-label">Avg/Game</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-value" id="bestGame">0</div>
-            <div class="stat-label">Best Game</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-value" id="gamesPlayed">0</div>
-            <div class="stat-label">Games</div>
-          </div>
-        </div>
-
-        <!-- Controls -->
-        <div style="text-align: center; margin: 12px 0;">
-          <button class="btn" onclick="addThree()">🎯 +1 Three</button>
-          <button class="btn" onclick="endGame()">✅ End Game</button>
-          <button class="btn btn-danger" onclick="resetAll()">🔄 Reset All</button>
-        </div>
-
-        <!-- Shot Log -->
-        <p style="margin: 12px 0 6px 0; font-size: 0.9rem;"><strong>Shot Log (Current Game):</strong></p>
-        <div class="shot-log" id="shotLog">No shots yet</div>
-
-        <!-- Game History -->
-        <p style="margin: 12px 0 6px 0; font-size: 0.9rem;"><strong>Game History:</strong></p>
-        <div class="game-sessions" id="gameSessions">No games played yet</div>
-      </div>
-
-      <!-- Ultimate Shooter Poll -->
-      <div class="card" id="poll">
-        <h2>🔥 Ultimate Shooter Poll (God‑Tier Version)</h2>
-        <p>Choose the greatest shooter of all time.</p>
-
-        <div class="poll-options">
-            <div class="option" onclick="castVote('curry')">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVFiVn_wj8y8yr3USLBqdeTJRS7FBMZzIzYVy6KQtziA&s=10" alt="Curry">
-                <button>Stephen Curry</button>
-            </div>
-
-            <div class="option" onclick="castVote('klay')">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT22-y2mZ2Gtq9gTsfYtfjB5Zqunuii6XQIyVr3PgXLvg&s=10" alt="Klay">
-                <button>Klay Thompson</button>
-            </div>
-
-            <div class="option" onclick="castVote('ray')">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUxxPJB5nhY9qUDJuJ5V7lt1oUXmjNCMtOqpf3j-lzYg&s=10" alt="Ray Allen">
-                <button>Ray Allen</button>
-            </div>
-        </div>
-
-        <h3>Results:</h3>
-
-        <div class="result">
-            <span>Curry</span>
-            <div class="bar"><div id="curryBar"></div></div>
-            <span id="curryPercent">0%</span>
-        </div>
-
-        <div class="result">
-            <span>Klay</span>
-            <div class="bar"><div id="klayBar"></div></div>
-            <span id="klayPercent">0%</span>
-        </div>
-
-        <div class="result">
-            <span>Ray Allen</span>
-            <div class="bar"><div id="rayBar"></div></div>
-            <span id="rayPercent">0%</span>
-        </div>
-
-        <h3>Leaderboard:</h3>
-        <ul id="leaderboard"></ul>
-
-        <button onclick="resetPoll()" style="margin-top:20px;background:red;color:white;padding:10px;border:none;border-radius:5px;cursor:pointer;">
-            Reset Poll
-        </button>
-
-        <div id="curryAnimation">🏀💥 CURRY FOR THREEEEEE!!!</div>
-      </div>
-
-      <!-- Wallpapers -->
-      <div class="card" id="wallpapers">
+      <a href="wallpapers.html" class="card">
+        <div class="card-icon">🎨</div>
         <h3>Curry Wallpapers</h3>
-        <p>Right‑click → Save image to use as wallpaper.</p>
-        <div class="gallery">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTY5oeuIBIaXWznSj4r44CJNJsMmgti-v5THgfsyk8GZQ&s=10" alt="Wallpaper 1">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNpfK-KYWoMLdatIQGf_jcjvexdec3mwAnBqAxa-xCUA&s=10" alt="Wallpaper 2">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDzXFmPKlbFCbV_4PAFyuwlFj1j3aQg0kosWhRECn_kQ&s=10" alt="Wallpaper 3">
-        </div>
-      </div>
+        <p>High-quality wallpapers featuring Steph Curry. Download and set as your desktop background.</p>
+        <p class="small-text">→ Click to explore</p>
+      </a>
 
-      <!-- Leaderboard -->
-      <div class="card" id="leaderboard-section">
-        <h3>Curry Fan Leaderboard</h3>
-        <p>Add your name and your "Curry fan level" (1–100):</p>
-        <input class="input-small" id="fanName" placeholder="Your name">
-        <input class="input-small" id="fanLevel" type="number" min="1" max="100" placeholder="Level">
-        <button class="btn" onclick="addFan()">Add</button>
-        <ul id="leaderboardList" class="leaderboard-list"></ul>
-      </div>
+      <a href="leaderboard.html" class="card">
+        <div class="card-icon">🏆</div>
+        <h3>Fan Leaderboard</h3>
+        <p>Join the Curry fan community! Add your name and fan level, compete on the global leaderboard.</p>
+        <p class="small-text">→ Click to explore</p>
+      </a>
 
-      <!-- Extras -->
-      <div class="card" id="extras">
-        <h3>Extras / Notes</h3>
-        <p>Ideas you can add later:</p>
-        <ul>
-          <li>Game log page with scores and threes.</li>
-          <li>Embed YouTube highlight playlist.</li>
-          <li>Polls: "Best Curry moment?"</li>
-          <li>Fan comments section (if your host allows it).</li>
-        </ul>
-      </div>
+      <a href="extras.html" class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Extras</h3>
+        <p>Bonus features, easter eggs, and fun ideas to explore. Discover what's coming next!</p>
+        <p class="small-text">→ Click to explore</p>
+      </a>
 
-      <!-- Contact -->
-      <div class="card" id="contact">
-        <h3>Contact / Socials</h3>
-        <p>Instagram: @stephencurry30</p>
-        <p>Twitter/X: @StephenCurry30</p>
-        <p>Curry Brand: Under Armour</p>
-        <p>Site Owner: Da Goat 🐐</p>
-      </div>
-
+      <a href="contact.html" class="card">
+        <div class="card-icon">📧</div>
+        <h3>Contact & Socials</h3>
+        <p>Connect with Steph and the community. Find official social links and contact information.</p>
+        <p class="small-text">→ Click to explore</p>
+      </a>
     </div>
   </div>
 
@@ -833,473 +386,28 @@
     © 2026 Stephen Curry Ultimate Fan Hub · Built by Da Goat
   </footer>
 
-  <div class="mode-btn" onclick="toggleMode()">Toggle Light/Dark</div>
+  <div class="mode-btn" onclick="toggleMode()">🌙 Toggle Light/Dark</div>
 
   <script>
-    // ===== POLL LOGIC =====
-    let votes = JSON.parse(localStorage.getItem("pollVotes")) || {
-        curry: 0,
-        klay: 0,
-        ray: 0
-    };
-
-    let hasVoted = localStorage.getItem("hasVoted") || "no";
-
-    function castVote(player) {
-        if (hasVoted === "yes") {
-            alert("You already voted!");
-            return;
-        }
-
-        votes[player]++;
-        localStorage.setItem("pollVotes", JSON.stringify(votes));
-        localStorage.setItem("hasVoted", "yes");
-
-        if (player === "curry") {
-            showCurryAnimation();
-        }
-
-        updatePoll();
-    }
-
-    function showCurryAnimation() {
-        let anim = document.getElementById("curryAnimation");
-        anim.style.display = "block";
-        setTimeout(() => anim.style.display = "none", 1500);
-    }
-
-    function resetPoll() {
-        votes = { curry: 0, klay: 0, ray: 0 };
-        localStorage.setItem("pollVotes", JSON.stringify(votes));
-        localStorage.setItem("hasVoted", "no");
-        updatePoll();
-    }
-
-    function updatePoll() {
-        let total = votes.curry + votes.klay + votes.ray;
-
-        function percent(v) {
-            return total === 0 ? 0 : Math.round((v / total) * 100);
-        }
-
-        let curryP = percent(votes.curry);
-        let klayP = percent(votes.klay);
-        let rayP = percent(votes.ray);
-
-        document.getElementById("curryBar").style.width = curryP + "%";
-        document.getElementById("klayBar").style.width = klayP + "%";
-        document.getElementById("rayBar").style.width = rayP + "%";
-
-        document.getElementById("curryPercent").innerText = curryP + "%";
-        document.getElementById("klayPercent").innerText = klayP + "%";
-        document.getElementById("rayPercent").innerText = rayP + "%";
-
-        updateLeaderboard();
-    }
-
-    function updateLeaderboard() {
-        let lb = document.getElementById("leaderboard");
-        lb.innerHTML = "";
-
-        let sorted = Object.entries(votes).sort((a, b) => b[1] - a[1]);
-
-        sorted.forEach(([player, score]) => {
-            let li = document.createElement("li");
-            li.innerText = `${player.toUpperCase()}: ${score} votes`;
-            lb.appendChild(li);
-        });
-    }
-
-    updatePoll();
-
-    // ===== UPGRADED QUIZ LOGIC =====
-    const quizBank = [
-      { question: "How many three-pointers did Curry make in his single-game record?", options: ["10", "12", "13", "14"], correct: 2 },
-      { question: "Which team did the Warriors beat in the 2015 NBA Finals?", options: ["Cleveland Cavaliers", "Miami Heat", "Toronto Raptors", "Boston Celtics"], correct: 0 },
-      { question: "What jersey number does Stephen Curry wear?", options: ["23", "30", "35", "11"], correct: 1 },
-      { question: "In what year did Curry surpass Ray Allen's all-time three-pointer record?", options: ["2020", "2021", "2022", "2023"], correct: 1 },
-      { question: "How many MVP awards does Stephen Curry have?", options: ["1", "2", "3", "4"], correct: 1 },
-      { question: "Which college did Curry attend?", options: ["Duke University", "Davidson College", "North Carolina", "UCLA"], correct: 1 },
-      { question: "What is Curry's career three-point percentage?", options: ["38.5%", "40.2%", "42.7%", "45.1%"], correct: 2 },
-      { question: "How many NBA Championships has Curry won?", options: ["2", "3", "4", "5"], correct: 2 },
-      { question: "What shoe brand does Curry represent?", options: ["Nike", "Adidas", "Under Armour", "Puma"], correct: 2 },
-      { question: "Which Warriors teammate was famously part of the Splash Brothers duo?", options: ["Klay Thompson", "Draymond Green", "Andrew Wiggins", "Jordan Poole"], correct: 0 },
-      { question: "What is Charlotte's nickname for Curry?", options: ["Chef", "Shooting Guard God", "Baby-faced Assassin", "The Closer"], correct: 2 },
-      { question: "Which year did Curry win his first NBA MVP award?", options: ["2014", "2015", "2016", "2017"], correct: 1 },
-      { question: "Which franchise did Curry lead to a 73-win season?", options: ["Golden State Warriors", "San Antonio Spurs", "Boston Celtics", "Los Angeles Lakers"], correct: 0 },
-      { question: "How many All-Star selections does Curry have?", options: ["7", "8", "9", "10"], correct: 2 },
-      { question: "Which of these is Curry's first name?", options: ["Allen", "Myles", "Wardell", "Kevin"], correct: 2 },
-      { question: "What event did Curry win in 2024?", options: ["Olympic Gold Medal", "NBA Finals MVP", "3-Point Contest", "All-Star Game MVP"], correct: 0 },
-      { question: "Which city is Curry known for playing in?", options: ["New Orleans", "Oakland", "San Francisco", "Boston"], correct: 1 },
-      { question: "Who is Curry's wife?", options: ["Ayesha", "Sloane", "Maya", "Kylie"], correct: 0 },
-      { question: "What foundation is Curry closely associated with?", options: ["Eat. Learn. Play.", "Dreams for All", "HOPE Foundation", "RCU Works"], correct: 0 },
-      { question: "How many points did Curry score in his 13 three-pointer game?", options: ["27", "32", "35", "42"], correct: 3 },
-      { question: "How many Warriors championships did Curry win before 2022?", options: ["2", "3", "4", "5"], correct: 1 },
-      { question: "Which player did Curry pass to become the all-time 3-point leader?", options: ["Klay Thompson", "Reggie Miller", "Ray Allen", "James Harden"], correct: 2 },
-      { question: "What is the name of Curry's signature line of shoes?", options: ["B-Easy", "Under Armour Curry", "Chef 1", "Baller"], correct: 1 },
-      { question: "What phrase is Curry famous for during a hot shooting night?", options: ["This is my house", "Light it up", "Night night", "Chef's special"], correct: 3 }
-    ];
-
-    const spicyBank = [
-      { question: "If Curry gets hot, he can bury a shot from where?", options: ["Half-court", "The logo", "The tunnel", "From the backboard"], correct: 1 },
-      { question: "Which move is Curry most famous for creating chaos on defense?", options: ["The crossover", "The shimmy", "The fadeaway", "The euro-step"], correct: 1 },
-      { question: "What does Curry do when defenders sag off him?", options: ["Dribble to the rim", "Rise from deep", "Pass it to the crowd", "Back down in the paint"], correct: 1 },
-      { question: "Which phrase best fits Curry when he starts cooking?", options: ["He is on fire", "He is in a slump", "He is sleeping", "He is checking out"], correct: 0 },
-      { question: "What does Curry's deep range make defenders do?", options: ["Drop back", "Play zone all game", "Leave the building", "Ignore him"], correct: 0 },
-      { question: "Which skill makes Curry impossible to guard in space?", options: ["His three-point range", "His block", "His rebounding", "His free throw style"], correct: 0 },
-      { question: "What kind of shot is Curry known for when the clock is winding down?", options: ["The clutch triple", "The alley-oop", "The hook shot", "The full-court pass"], correct: 0 },
-      { question: "Which of these is most Curry-like?", options: ["A logo three", "A one-handed dunk", "A 5-step layup", "A blocked shot"], correct: 0 }
-    ];
-
-    let quizQuestions = [];
-    let currentQuestionIndex = 0;
-    let userAnswers = [];
-    let spicyQuestion = null;
-
-    function buildQuizRound() {
-      const shuffled = [...quizBank].sort(() => Math.random() - 0.5);
-      return shuffled.slice(0, 10);
-    }
-
-    function getSpicyQuestion() {
-      const randomIndex = Math.floor(Math.random() * spicyBank.length);
-      return spicyBank[randomIndex];
-    }
-
-    function initQuiz() {
-      quizQuestions = buildQuizRound();
-      currentQuestionIndex = 0;
-      userAnswers = [];
-      document.getElementById("quizContainer").style.display = "block";
-      document.getElementById("quizResults").style.display = "none";
-      document.getElementById("currentQuestion").textContent = currentQuestionIndex + 1;
-      displayQuestion();
-    }
-
-    function displayQuestion() {
-      const question = quizQuestions[currentQuestionIndex];
-      let html = `
-        <div class="quiz-question">
-          <strong>${question.question}</strong>
-          <div class="quiz-options">
-      `;
-      
-      question.options.forEach((option, index) => {
-        html += `
-          <div class="quiz-option" onclick="selectAnswer(${index})" id="option-${index}">
-            ${String.fromCharCode(65 + index)}) ${option}
-          </div>
-        `;
-      });
-
-      html += `</div></div>`;
-      document.getElementById("quizContent").innerHTML = html;
-      document.getElementById("nextBtn").style.display = "none";
-    }
-
-    function selectAnswer(index) {
-      const question = quizQuestions[currentQuestionIndex];
-      userAnswers.push({
-        questionIndex: currentQuestionIndex,
-        userAnswer: index,
-        correct: index === question.correct
-      });
-
-      document.querySelectorAll(".quiz-option").forEach(el => el.style.pointerEvents = "none");
-      document.getElementById(`option-${index}`).classList.add(index === question.correct ? "correct" : "incorrect");
-      
-      if (index !== question.correct) {
-        const correctElement = document.getElementById(`option-${question.correct}`);
-        if (correctElement) {
-          correctElement.classList.add("correct");
-        }
-      }
-
-      document.getElementById("nextBtn").style.display = "inline-block";
-    }
-
-    function nextQuestion() {
-      currentQuestionIndex++;
-      
-      if (currentQuestionIndex < quizQuestions.length) {
-        document.getElementById("currentQuestion").textContent = currentQuestionIndex + 1;
-        displayQuestion();
-      } else {
-        showQuizResults();
-      }
-    }
-
-    function showQuizResults() {
-      document.getElementById("quizContainer").style.display = "none";
-      
-      const correctAnswers = userAnswers.filter(a => a.correct).length;
-      const score = Math.round((correctAnswers / quizQuestions.length) * 100);
-      
-      let scoreClass = score === 100 ? "perfect" : score >= 80 ? "good" : "poor";
-      let message = "";
-      
-      if (score === 100) {
-        message = "🔥 PERFECT SCORE! You're a TRUE Curry fanatic! Absolutely locked in!";
-      } else if (score >= 90) {
-        message = "🏀 Incredible! You know Steph inside and out!";
-      } else if (score >= 80) {
-        message = "✅ Great job! You're definitely a dedicated fan!";
-      } else if (score >= 70) {
-        message = "👍 Good effort! Keep studying those Curry stats!";
-      } else if (score >= 60) {
-        message = "📚 Nice try! Learn more about the GOAT shooter!";
-      } else {
-        message = "🔄 Don't worry! Take the quiz again and improve your score!";
-      }
-
-      const resultsHTML = `
-        <div class="quiz-results">
-          <h3>🏆 QUIZ RESULTS 🏆</h3>
-          <div class="quiz-score ${scoreClass}">${score}%</div>
-          <div>You got <strong>${correctAnswers} out of 10</strong> questions correct!</div>
-          <div class="quiz-message">${message}</div>
-          <button class="btn" onclick="initQuiz()" style="margin-top: 12px;">Take Quiz Again</button>
-        </div>
-      `;
-
-      const resultsContainer = document.getElementById("quizResults");
-      resultsContainer.innerHTML = resultsHTML;
-      resultsContainer.style.display = "block";
-
-      showSpicyQuestion();
-    }
-
-    function showSpicyQuestion() {
-      spicyQuestion = getSpicyQuestion();
-      const resultsContainer = document.getElementById("quizResults");
-      const spicyHTML = `
-        <div class="spicy-round">
-          <h4>🔥 Spicy Bonus Question</h4>
-          <div><strong>${spicyQuestion.question}</strong></div>
-          <div class="quiz-options" style="margin-top: 12px;">
-            ${spicyQuestion.options.map((option, index) => `
-              <div class="quiz-option" id="spicy-option-${index}">${String.fromCharCode(65 + index)}) ${option}</div>
-            `).join('')}
-          </div>
-          <button class="btn" onclick="revealSpicyAnswer()" style="margin-top: 8px;">Reveal Answer</button>
-          <button class="btn btn-secondary" onclick="showSpicyQuestion()" style="margin-top: 8px;">New Spicy Question</button>
-          <div id="spicyAnswer" class="spicy-answer" style="display:none;">Answer: ${spicyQuestion.options[spicyQuestion.correct]}</div>
-        </div>
-      `;
-      resultsContainer.insertAdjacentHTML('beforeend', spicyHTML);
-    }
-
-    function revealSpicyAnswer() {
-      const answerBox = document.getElementById("spicyAnswer");
-      if (answerBox) {
-        answerBox.style.display = "block";
-      }
-    }
-
-    function resetQuiz() {
-      currentQuestionIndex = 0;
-      userAnswers = [];
-      document.getElementById("quizContainer").style.display = "block";
-      document.getElementById("quizResults").style.display = "none";
-      document.getElementById("quizContent").innerHTML = `
-        <div style="text-align: center; padding: 12px;">
-          <p>Click the button below to start the quiz!</p>
-          <button class="btn" onclick="initQuiz()">🚀 Start Quiz</button>
-        </div>
-      `;
-      document.getElementById("nextBtn").style.display = "none";
-    }
-
-    // Initialize quiz on page load
-    resetQuiz();
-
-    // ===== 3PT TRACKER LOGIC (UPGRADED) =====
-    let trackerData = JSON.parse(localStorage.getItem("trackerData")) || {
-        currentGame: 0,
-        gameHistory: [],
-        shotLog: []
-    };
-
-    const CURRY_3PT_PERCENTAGE = 42.7;
-
-    function addThree() {
-        trackerData.currentGame++;
-        const timestamp = new Date().toLocaleTimeString();
-        trackerData.shotLog.push(timestamp);
-        saveTrackerData();
-        updateTrackerDisplay();
-    }
-
-    function endGame() {
-        if (trackerData.currentGame === 0) {
-            alert("No shots in this game!");
-            return;
-        }
-        trackerData.gameHistory.push({
-            made: trackerData.currentGame,
-            timestamp: new Date().toLocaleString()
-        });
-        trackerData.currentGame = 0;
-        trackerData.shotLog = [];
-        saveTrackerData();
-        updateTrackerDisplay();
-        alert("Game saved! ✅");
-    }
-
-    function resetAll() {
-        if (confirm("Reset ALL data? This cannot be undone.")) {
-            trackerData = {
-                currentGame: 0,
-                gameHistory: [],
-                shotLog: []
-            };
-            saveTrackerData();
-            updateTrackerDisplay();
-            alert("All data reset! 🔄");
-        }
-    }
-
-    function saveTrackerData() {
-        localStorage.setItem("trackerData", JSON.stringify(trackerData));
-    }
-
-    function updateTrackerDisplay() {
-        // Current count
-        document.getElementById("threeCount").innerText = trackerData.currentGame;
-
-        // Calculate stats
-        const totalMade = trackerData.gameHistory.reduce((sum, game) => sum + game.made, 0);
-        const gamesPlayed = trackerData.gameHistory.length;
-        const avgPerGame = gamesPlayed > 0 ? (totalMade / gamesPlayed).toFixed(1) : 0;
-        const bestGame = gamesPlayed > 0 ? Math.max(...trackerData.gameHistory.map(g => g.made)) : 0;
-
-        // Update stat boxes
-        document.getElementById("totalMade").innerText = totalMade;
-        document.getElementById("avgPerGame").innerText = avgPerGame;
-        document.getElementById("bestGame").innerText = bestGame;
-        document.getElementById("gamesPlayed").innerText = gamesPlayed;
-
-        // Update progress bar (current game vs Curry avg)
-        let currentPercent = 0;
-        if (trackerData.currentGame > 0) {
-            currentPercent = Math.min(100, (trackerData.currentGame / (CURRY_3PT_PERCENTAGE / 10)).toFixed(1));
-        }
-        document.getElementById("yourPercent").innerText = currentPercent + "%";
-        document.getElementById("progressFill").style.width = currentPercent + "%";
-
-        // Comparison
-        let comparisonEl = document.getElementById("comparisonResult");
-        if (trackerData.currentGame > 0) {
-            const curryBaseline = 5;
-            if (trackerData.currentGame > curryBaseline) {
-                comparisonEl.innerHTML = `<p class="comparison-text better">🔥 Heating up! Better than Curry's typical game!</p>`;
-            } else if (trackerData.currentGame === curryBaseline) {
-                comparisonEl.innerHTML = `<p class="comparison-text equal">📊 Matching Curry's typical night!</p>`;
-            } else {
-                comparisonEl.innerHTML = `<p class="comparison-text worse">Keep shooting! 💪</p>`;
-            }
-        } else {
-            comparisonEl.innerHTML = ``;
-        }
-
-        // Shot log
-        let shotLogEl = document.getElementById("shotLog");
-        if (trackerData.shotLog.length > 0) {
-            shotLogEl.innerHTML = trackerData.shotLog.map(time => `<div class="shot-item">✅ Shot at ${time}</div>`).join("");
-        } else {
-            shotLogEl.innerHTML = "No shots yet";
-        }
-
-        // Game history
-        let gameSessionsEl = document.getElementById("gameSessions");
-        if (trackerData.gameHistory.length > 0) {
-            gameSessionsEl.innerHTML = trackerData.gameHistory
-                .reverse()
-                .map(game => `<div class="game-item"><span>${game.timestamp}</span> <span class="made">${game.made} 3PT</span></div>`)
-                .join("");
-        } else {
-            gameSessionsEl.innerHTML = "No games played yet";
-        }
-    }
-
-    updateTrackerDisplay();
-
-    // ===== LIGHT/DARK MODE =====
     function toggleMode() {
       document.body.classList.toggle('light');
+      localStorage.setItem('darkMode', !document.body.classList.contains('light'));
     }
 
-    // ===== AUTO-REFRESH NEWS (EXPANDED) =====
-    function refreshNews() {
-      const updates = [
-        "Curry working on new off-ball movement drills.",
-        "Steph spotted training with rookies after practice.",
-        "Curry fine-tuning his handle and footwork.",
-        "Steph mentoring young guards at practice.",
-        "Curry hitting 100+ threes in post-game workout.",
-        "Warriors staff: Steph's conditioning is elite this season.",
-        "Curry perfecting his catch-and-shoot mechanics.",
-        "Steph running advanced footwork drills with trainers.",
-        "New Curry Brand shoes rumored for release.",
-        "Curry Brand announces limited-edition collaboration.",
-        "Stephen Curry signature shoe hits $1 billion in sales.",
-        "Curry extends partnership with Under Armour through 2030.",
-        "New Curry Brand apparel line coming next month.",
-        "Warriors preparing new offensive sets for Curry.",
-        "Curry locked in from deep during scrimmage.",
-        "Stephen Curry officially agreed to a two-year, $116 million contract extension.",
-        "Steph hits 10 threes in preseason prep game.",
-        "Warriors' new plays maximize Curry's spacing advantage.",
-        "Curry dominates in Warriors' first exhibition game.",
-        "Curry hosting charity event with Eat. Learn. Play.",
-        "Steph donates $1M to Oakland youth basketball programs.",
-        "Curry Foundation launches new STEM initiative.",
-        "Stephen Curry visits children's hospital, lifts spirits.",
-        "Curry leads Warriors community service day.",
-        "Curry inches closer to 4,000 career threes made.",
-        "Steph ranks #1 in all-time three-pointers — 4,087!",
-        "Curry's deep range extends beyond NBA arc.",
-        "Steph sets new record for most 40+ point games.",
-        "Curry becomes first player to hit 5,000 three-pointers.",
-        "40-point performance with 8 threes in Warriors victory.",
-        "Behind-the-back dime to Klay on transition break.",
-        "Half-court warm-up shots still automatic.",
-        "Curry hits the dagger with 2 seconds left.",
-        "Steph puts on 3-point clinic: 12 made threes.",
-        "Curry's clutch shooting leads Warriors to overtime win.",
-        "Curry Family Foundation grants scholarships to 100 students.",
-        "Steph celebrates daughter Riley's basketball progress.",
-        "Ayesha & Steph announce new business venture.",
-        "Curry family donates to local Bay Area charities.",
-        "Curry's +/- rating leads league at +18.5.",
-        "Steph shooting 50-40-90 club standards this season.",
-        "Curry's usage rate down but efficiency up 5%.",
-        "Advanced metrics: Curry is MVP candidate.",
-        "Curry preparing for upcoming international exhibition.",
-        "Steph headline act at All-Star Weekend 3PT Contest.",
-        "Curry invited to participate in global basketball summit.",
-        "Curry hits 3-pointer from logo — crowd goes wild!",
-        "Steph puts defense in spin cycle with ankle-breaker.",
-        "Curry's shimmy celebration trending on social media.",
-        "Behind-the-back three from Steph is viral sensation."
-      ];
-      document.getElementById("liveNews").innerText =
-        updates[Math.floor(Math.random() * updates.length)];
+    if (localStorage.getItem('darkMode') === 'false') {
+      document.body.classList.add('light');
     }
-    refreshNews();
-    setInterval(refreshNews, 5000);
 
-    // ===== FAN LEADERBOARD =====
-    function addFan() {
-      const name = document.getElementById("fanName").value.trim();
-      const level = document.getElementById("fanLevel").value.trim();
-      if (!name || !level) return;
-      const li = document.createElement("li");
-      li.textContent = name + " — Curry Fan Level: " + level;
-      document.getElementById("leaderboardList").appendChild(li);
-      document.getElementById("fanName").value = "";
-      document.getElementById("fanLevel").value = "";
-    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('nav a').forEach(link => {
+        if (link.href.includes(currentPage)) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
   </script>
 
 </body>
