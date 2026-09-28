@@ -280,6 +280,7 @@
       <body>
        <div class="card">
 <section id="poll" style="margin-top:20px;">
+  <section id="poll" style="margin-top:40px;">
     <h2>🔥 Ultimate Shooter Poll (God‑Tier Version)</h2>
     <p>Choose the greatest shooter of all time.</p>
 
@@ -329,8 +330,161 @@
 
     <div id="curryAnimation">🏀💥 CURRY FOR THREEEEEE!!!</div>
 </section>
-</div>
-</body>
+
+<style>
+    #poll button {
+        margin: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 8px;
+        border: none;
+        background: gold;
+        transition: 0.3s;
+    }
+
+    #poll button:hover {
+        background: orange;
+        transform: scale(1.05);
+    }
+
+    .poll-options {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .option {
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .option img {
+        width: 120px;
+        height: 120px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        transition: 0.3s;
+    }
+
+    .option img:hover {
+        transform: scale(1.1);
+    }
+
+    .result {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 10px 0;
+    }
+
+    .bar {
+        width: 60%;
+        height: 15px;
+        background: #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .bar div {
+        height: 100%;
+        width: 0%;
+        background: gold;
+        transition: width 0.4s ease;
+    }
+
+    #curryAnimation {
+        display: none;
+        font-size: 24px;
+        margin-top: 20px;
+        color: gold;
+        animation: shoot 1s ease;
+    }
+
+    @keyframes shoot {
+        0% { transform: scale(0.5); opacity: 0; }
+        50% { transform: scale(1.3); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+</style>
+
+<script>
+    let votes = JSON.parse(localStorage.getItem("pollVotes")) || {
+        curry: 0,
+        klay: 0,
+        ray: 0
+    };
+
+    let hasVoted = localStorage.getItem("hasVoted") || "no";
+
+    function castVote(player) {
+        if (hasVoted === "yes") {
+            alert("You already voted!");
+            return;
+        }
+
+        votes[player]++;
+        localStorage.setItem("pollVotes", JSON.stringify(votes));
+        localStorage.setItem("hasVoted", "yes");
+
+        if (player === "curry") {
+            showCurryAnimation();
+        }
+
+        updatePoll();
+    }
+
+    function showCurryAnimation() {
+        let anim = document.getElementById("curryAnimation");
+        anim.style.display = "block";
+        setTimeout(() => anim.style.display = "none", 1500);
+    }
+
+    function resetPoll() {
+        votes = { curry: 0, klay: 0, ray: 0 };
+        localStorage.setItem("pollVotes", JSON.stringify(votes));
+        localStorage.setItem("hasVoted", "no");
+        updatePoll();
+    }
+
+    function updatePoll() {
+        let total = votes.curry + votes.klay + votes.ray;
+
+        function percent(v) {
+            return total === 0 ? 0 : Math.round((v / total) * 100);
+        }
+
+        let curryP = percent(votes.curry);
+        let klayP = percent(votes.klay);
+        let rayP = percent(votes.ray);
+
+        document.getElementById("curryBar").style.width = curryP + "%";
+        document.getElementById("klayBar").style.width = klayP + "%";
+        document.getElementById("rayBar").style.width = rayP + "%";
+
+        document.getElementById("curryPercent").innerText = curryP + "%";
+        document.getElementById("klayPercent").innerText = klayP + "%";
+        document.getElementById("rayPercent").innerText = rayP + "%";
+
+        updateLeaderboard();
+    }
+
+    function updateLeaderboard() {
+        let lb = document.getElementById("leaderboard");
+        lb.innerHTML = "";
+
+        let sorted = Object.entries(votes).sort((a, b) => b[1] - a[1]);
+
+        sorted.forEach(([player, score]) => {
+            let li = document.createElement("li");
+            li.innerText = `${player.toUpperCase()}: ${score} votes`;
+            lb.appendChild(li);
+        });
+    }
+
+    updatePoll();
+</script>
+<body>
 
       <!-- Wallpapers -->
       <div class="card" id="wallpapers">
