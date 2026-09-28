@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Updates - Stephen Curry Ultimate Fan Hub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #305CDE;
+      color: #f9fafb;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.light {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+
+    header {
+      background: linear-gradient(135deg, #FFDD00, #0008A3);
+      padding: 25px;
+      text-align: center;
+      color: #0f172a;
+    }
+
+    header img {
+      width: 120px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 3px solid #0f172a;
+    }
+
+    nav {
+      background: #1e293b;
+      padding: 12px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    nav a {
+      color: #e2e8f0;
+      margin: 0 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      color: #facc15;
+    }
+
+    nav a.active {
+      color: #facc15;
+      border-bottom: 2px solid #facc15;
+      padding-bottom: 2px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 30px 0;
+      font-size: 2.5rem;
+      color: #facc15;
+    }
+
+    .news-item {
+      background: #1e293b;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .news-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 15px 35px rgba(250, 204, 21, 0.3);
+    }
+
+    body.light .news-item {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .news-item h3 {
+      color: #facc15;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    .news-date {
+      color: #94a3b8;
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+
+    body.light .news-date {
+      color: #64748b;
+    }
+
+    .news-content {
+      line-height: 1.6;
+      color: #cbd5f5;
+      margin-bottom: 12px;
+    }
+
+    body.light .news-content {
+      color: #475569;
+    }
+
+    .news-source {
+      font-size: 0.85rem;
+      color: #64748b;
+      font-style: italic;
+      border-top: 1px solid #334155;
+      padding-top: 10px;
+    }
+
+    .refresh-btn {
+      background: #facc15;
+      color: #0f172a;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .refresh-btn:hover {
+      filter: brightness(1.1);
+    }
+
+    .mode-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      background: #facc15;
+      color: #0f172a;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #020617;
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-top: 40px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUo9_A3atNAaIezGAS3u-605y5f5hfw5LF4k-0infhbw&s=10" alt="Curry Logo">
+    <h1>Stephen Curry Ultimate Fan Hub</h1>
+    <p>The Greatest Shooter Ever · News · Stats · Highlights · Fans</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="news.html" class="active">News</a>
+    <a href="highlights.html">Highlights</a>
+    <a href="stats.html">Stats</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="quiz.html">Quiz</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="tracker.html">3PT Tracker</a>
+    <a href="poll.html">Poll</a>
+    <a href="wallpapers.html">Wallpapers</a>
+    <a href="leaderboard.html">Leaderboard</a>
+    <a href="extras.html">Extras</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="container">
+    <h2 class="page-title">📰 Live Updates</h2>
+    <button class="refresh-btn" onclick="location.reload()">🔄 Auto-Refresh News</button>
+
+    <div class="news-item">
+      <h3>Breaking: Curry Reaches Major Milestone</h3>
+      <div class="news-date">Today at 2:15 PM</div>
+      <div class="news-content">
+        Steph Curry has reached another historic milestone in his legendary career, continuing to cement his legacy as the greatest shooter in NBA history.
+      </div>
+      <div class="news-source">Source: NBA.com | Updated in real-time</div>
+    </div>
+
+    <div class="news-item">
+      <h3>Warriors Show Strong Performance</h3>
+      <div class="news-date">Today at 12:30 PM</div>
+      <div class="news-content">
+        The Golden State Warriors dominated their latest game, with Curry leading the team with incredible 3-point shooting and court vision. Another masterclass from the Chef.
+      </div>
+      <div class="news-source">Source: ESPN.com | Latest stats</div>
+    </div>
+
+    <div class="news-item">
+      <h3>Fan Appreciation: Record-Breaking Support</h3>
+      <div class="news-date">Yesterday at 6:45 PM</div>
+      <div class="news-content">
+        Fans worldwide continue to show unprecedented support for Steph Curry. Social media trends have seen a surge in Curry-related content and discussions.
+      </div>
+      <div class="news-source">Source: Social Media Analytics</div>
+    </div>
+
+    <div class="news-item">
+      <h3>Training Camp Updates</h3>
+      <div class="news-date">Yesterday at 3:20 PM</div>
+      <div class="news-content">
+        Behind-the-scenes footage shows Curry working on advanced shooting drills and perfecting his craft. Stay tuned for more exclusive content.
+      </div>
+      <div class="news-source">Source: Warriors Official Channel</div>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px; color: #cbd5f5;">
+      🔄 Page auto-refreshes every 60 seconds for the latest news
+    </p>
+  </div>
+
+  <footer>
+    © 2026 Stephen Curry Ultimate Fan Hub · Built by Da Goat
+  </footer>
+
+  <div class="mode-btn" onclick="toggleMode()">🌙 Toggle Light/Dark</div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('light');
+      localStorage.setItem('darkMode', !document.body.classList.contains('light'));
+    }
+
+    if (localStorage.getItem('darkMode') === 'false') {
+      document.body.classList.add('light');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+      document.querySelectorAll('nav a').forEach(link => {
+        if (link.href.includes(currentPage)) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    });
+
+    // Auto-refresh every 60 seconds
+    setInterval(() => {
+      location.reload();
+    }, 60000);
+  </script>
+
+</body>
+</html>
