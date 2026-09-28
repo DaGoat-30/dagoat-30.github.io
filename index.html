@@ -146,6 +146,15 @@
       background: #dc2626;
     }
 
+    .btn-secondary {
+      background: #64748b;
+      color: #fff;
+    }
+
+    .btn-secondary:hover {
+      background: #475569;
+    }
+
     .input-small {
       padding: 6px 10px;
       border-radius: 6px;
@@ -419,6 +428,120 @@
     .comparison-text.equal {
       color: #facc15;
     }
+
+    /* QUIZ STYLES */
+    .quiz-container {
+      background: #0f172a;
+      padding: 12px;
+      border-radius: 8px;
+      margin: 12px 0;
+    }
+
+    body.light .quiz-container {
+      background: #cbd5e1;
+    }
+
+    .quiz-progress {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+      color: #facc15;
+      font-weight: bold;
+    }
+
+    .quiz-question {
+      background: #1e293b;
+      padding: 12px;
+      border-radius: 6px;
+      margin: 8px 0;
+      border-left: 3px solid #facc15;
+    }
+
+    body.light .quiz-question {
+      background: #e2e8f0;
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin: 10px 0;
+    }
+
+    .quiz-option {
+      background: #0f172a;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid #475569;
+      transition: all 0.3s;
+      font-size: 0.85rem;
+    }
+
+    body.light .quiz-option {
+      background: #cbd5e1;
+    }
+
+    .quiz-option:hover {
+      border-color: #facc15;
+      background: #1e293b;
+    }
+
+    body.light .quiz-option:hover {
+      background: #e2e8f0;
+      border-color: #facc15;
+    }
+
+    .quiz-option.selected {
+      border-color: #facc15;
+      background: #1e293b;
+    }
+
+    .quiz-option.correct {
+      border-color: #4ade80;
+      background: #0f3a1d;
+    }
+
+    .quiz-option.incorrect {
+      border-color: #ef4444;
+      background: #3d0f0f;
+    }
+
+    .quiz-results {
+      background: #0f172a;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+      margin: 12px 0;
+      border: 2px solid #facc15;
+    }
+
+    body.light .quiz-results {
+      background: #cbd5e1;
+    }
+
+    .quiz-score {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #facc15;
+      margin: 10px 0;
+    }
+
+    .quiz-score.perfect {
+      color: #4ade80;
+    }
+
+    .quiz-score.good {
+      color: #facc15;
+    }
+
+    .quiz-score.poor {
+      color: #f87171;
+    }
+
+    .quiz-message {
+      margin: 10px 0;
+      font-size: 0.95rem;
+    }
   </style>
 </head>
 <body>
@@ -489,18 +612,23 @@
         <p class="small-text">You can swap these links for any Curry pics you like.</p>
       </div>
 
-      <!-- Quiz -->
+      <!-- Quiz UPGRADED -->
       <div class="card" id="quiz">
-        <h3>Curry Fan Quiz</h3>
-        <p>Test how locked in you are 👀</p>
-        <ol>
-          <li>How many threes did Curry hit in his single‑game record?</li>
-          <li>Which team did the Warriors beat in the 2015 Finals?</li>
-          <li>What jersey number does Curry wear?</li>
-          <li>How many All-Stars games did Curry attend?</li>
-        </ol>
-        <button class="btn" onclick="showQuizAnswers()">Show Answers</button>
-        <p id="quizAnswers" style="margin-top:8px;"></p>
+        <h3>🏀 Curry Fan Quiz (UPGRADED)</h3>
+        <p>Test how locked in you are! Answer all 10 questions to see results. 👀</p>
+        
+        <div class="quiz-container" id="quizContainer">
+          <div class="quiz-progress">
+            Question <span id="currentQuestion">1</span>/10
+          </div>
+          <div id="quizContent"></div>
+          <div style="margin-top: 12px; text-align: center;">
+            <button class="btn" id="nextBtn" onclick="nextQuestion()" style="display:none;">Next Question →</button>
+            <button class="btn btn-danger" onclick="resetQuiz()">Reset Quiz</button>
+          </div>
+        </div>
+
+        <div id="quizResults" style="display:none;"></div>
       </div>
 
       <!-- Timeline -->
@@ -756,6 +884,179 @@
 
     updatePoll();
 
+    // ===== UPGRADED QUIZ LOGIC =====
+    const quizQuestions = [
+      {
+        question: "How many three-pointers did Curry make in his single-game record?",
+        options: ["10", "12", "13", "14"],
+        correct: 2
+      },
+      {
+        question: "Which team did the Warriors beat in the 2015 NBA Finals?",
+        options: ["Cleveland Cavaliers", "Miami Heat", "Toronto Raptors", "Boston Celtics"],
+        correct: 0
+      },
+      {
+        question: "What jersey number does Stephen Curry wear?",
+        options: ["23", "30", "35", "11"],
+        correct: 1
+      },
+      {
+        question: "In what year did Curry surpass Ray Allen's all-time three-pointer record?",
+        options: ["2020", "2021", "2022", "2023"],
+        correct: 1
+      },
+      {
+        question: "How many MVP awards does Stephen Curry have?",
+        options: ["1", "2", "3", "4"],
+        correct: 1
+      },
+      {
+        question: "Which college did Curry attend?",
+        options: ["Duke University", "Davidson College", "North Carolina", "UCLA"],
+        correct: 1
+      },
+      {
+        question: "What is Curry's career three-point percentage?",
+        options: ["38.5%", "40.2%", "42.7%", "45.1%"],
+        correct: 2
+      },
+      {
+        question: "How many NBA Championships has Curry won?",
+        options: ["2", "3", "4", "5"],
+        correct: 2
+      },
+      {
+        question: "In what year did Curry sign his $116M extension with the Warriors?",
+        options: ["2023", "2024", "2025", "2026"],
+        correct: 2
+      },
+      {
+        question: "What shoe brand does Curry represent?",
+        options: ["Nike", "Adidas", "Under Armour", "Puma"],
+        correct: 2
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let userAnswers = [];
+    let quizStarted = false;
+
+    function initQuiz() {
+      currentQuestionIndex = 0;
+      userAnswers = [];
+      quizStarted = true;
+      document.getElementById("quizContainer").style.display = "block";
+      document.getElementById("quizResults").style.display = "none";
+      displayQuestion();
+    }
+
+    function displayQuestion() {
+      const question = quizQuestions[currentQuestionIndex];
+      let html = `
+        <div class="quiz-question">
+          <strong>${question.question}</strong>
+          <div class="quiz-options">
+      `;
+      
+      question.options.forEach((option, index) => {
+        html += `
+          <div class="quiz-option" onclick="selectAnswer(${index})" id="option-${index}">
+            ${String.fromCharCode(65 + index)}) ${option}
+          </div>
+        `;
+      });
+
+      html += `</div></div>`;
+      document.getElementById("quizContent").innerHTML = html;
+      document.getElementById("nextBtn").style.display = "none";
+    }
+
+    function selectAnswer(index) {
+      const question = quizQuestions[currentQuestionIndex];
+      userAnswers.push({
+        questionIndex: currentQuestionIndex,
+        userAnswer: index,
+        correct: index === question.correct
+      });
+
+      // Show selected and correct answer
+      document.querySelectorAll(".quiz-option").forEach(el => el.style.pointerEvents = "none");
+      document.getElementById(`option-${index}`).classList.add(index === question.correct ? "correct" : "incorrect");
+      
+      if (index !== question.correct) {
+        document.getElementById(`option-${question.correct}`).classList.add("correct");
+      }
+
+      document.getElementById("nextBtn").style.display = "inline-block";
+    }
+
+    function nextQuestion() {
+      currentQuestionIndex++;
+      
+      if (currentQuestionIndex < quizQuestions.length) {
+        document.getElementById("currentQuestion").textContent = currentQuestionIndex + 1;
+        displayQuestion();
+      } else {
+        showQuizResults();
+      }
+    }
+
+    function showQuizResults() {
+      document.getElementById("quizContainer").style.display = "none";
+      
+      const correctAnswers = userAnswers.filter(a => a.correct).length;
+      const score = Math.round((correctAnswers / quizQuestions.length) * 100);
+      
+      let scoreClass = score === 100 ? "perfect" : score >= 80 ? "good" : "poor";
+      let message = "";
+      
+      if (score === 100) {
+        message = "🔥 PERFECT SCORE! You're a TRUE Curry fanatic! Absolutely locked in!";
+      } else if (score >= 90) {
+        message = "🏀 Incredible! You know Steph inside and out!";
+      } else if (score >= 80) {
+        message = "✅ Great job! You're definitely a dedicated fan!";
+      } else if (score >= 70) {
+        message = "👍 Good effort! Keep studying those Curry stats!";
+      } else if (score >= 60) {
+        message = "📚 Nice try! Learn more about the GOAT shooter!";
+      } else {
+        message = "🔄 Don't worry! Take the quiz again and improve your score!";
+      }
+
+      let resultsHTML = `
+        <div class="quiz-results">
+          <h3>🏆 QUIZ RESULTS 🏆</h3>
+          <div class="quiz-score ${scoreClass}">${score}%</div>
+          <div>You got <strong>${correctAnswers} out of 10</strong> questions correct!</div>
+          <div class="quiz-message">${message}</div>
+          <button class="btn" onclick="initQuiz()" style="margin-top: 12px;">Take Quiz Again</button>
+        </div>
+      `;
+
+      document.getElementById("quizResults").innerHTML = resultsHTML;
+      document.getElementById("quizResults").style.display = "block";
+    }
+
+    function resetQuiz() {
+      currentQuestionIndex = 0;
+      userAnswers = [];
+      quizStarted = false;
+      document.getElementById("quizContainer").style.display = "block";
+      document.getElementById("quizResults").style.display = "none";
+      document.getElementById("quizContent").innerHTML = `
+        <div style="text-align: center; padding: 12px;">
+          <p>Click the button below to start the quiz!</p>
+          <button class="btn" onclick="initQuiz()">🚀 Start Quiz</button>
+        </div>
+      `;
+      document.getElementById("nextBtn").style.display = "none";
+    }
+
+    // Initialize quiz on page load
+    resetQuiz();
+
     // ===== 3PT TRACKER LOGIC (UPGRADED) =====
     let trackerData = JSON.parse(localStorage.getItem("trackerData")) || {
         currentGame: 0,
@@ -951,12 +1252,6 @@
     }
     refreshNews();
     setInterval(refreshNews, 5000);
-
-    // ===== QUIZ =====
-    function showQuizAnswers() {
-      document.getElementById("quizAnswers").innerText =
-        "Answers: 1) 13 threes  |  2) Cleveland Cavaliers  |  3) #30  |  4) 12";
-    }
 
     // ===== FAN LEADERBOARD =====
     function addFan() {
