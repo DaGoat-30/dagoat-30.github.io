@@ -542,6 +542,34 @@
       margin: 10px 0;
       font-size: 0.95rem;
     }
+
+    .spicy-round {
+      background: linear-gradient(135deg, rgba(250, 204, 21, 0.12), rgba(239, 68, 68, 0.08));
+      border: 2px solid #facc15;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 18px;
+      text-align: left;
+    }
+
+    .spicy-round h4 {
+      margin-top: 0;
+      color: #facc15;
+    }
+
+    .spicy-answer {
+      margin-top: 10px;
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 6px;
+      padding: 10px;
+      color: #f8fafc;
+      font-weight: bold;
+    }
+
+    body.light .spicy-answer {
+      background: rgba(15, 23, 42, 0.06);
+      color: #0f172a;
+    }
   </style>
 </head>
 <body>
@@ -885,69 +913,66 @@
     updatePoll();
 
     // ===== UPGRADED QUIZ LOGIC =====
-    const quizQuestions = [
-      {
-        question: "How many three-pointers did Curry make in his single-game record?",
-        options: ["10", "12", "13", "14"],
-        correct: 2
-      },
-      {
-        question: "Which team did the Warriors beat in the 2015 NBA Finals?",
-        options: ["Cleveland Cavaliers", "Miami Heat", "Toronto Raptors", "Boston Celtics"],
-        correct: 0
-      },
-      {
-        question: "What jersey number does Stephen Curry wear?",
-        options: ["23", "30", "35", "11"],
-        correct: 1
-      },
-      {
-        question: "In what year did Curry surpass Ray Allen's all-time three-pointer record?",
-        options: ["2020", "2021", "2022", "2023"],
-        correct: 1
-      },
-      {
-        question: "How many MVP awards does Stephen Curry have?",
-        options: ["1", "2", "3", "4"],
-        correct: 1
-      },
-      {
-        question: "Which college did Curry attend?",
-        options: ["Duke University", "Davidson College", "North Carolina", "UCLA"],
-        correct: 1
-      },
-      {
-        question: "What is Curry's career three-point percentage?",
-        options: ["38.5%", "40.2%", "42.7%", "45.1%"],
-        correct: 2
-      },
-      {
-        question: "How many NBA Championships has Curry won?",
-        options: ["2", "3", "4", "5"],
-        correct: 2
-      },
-      {
-        question: "In what year did Curry sign his $116M extension with the Warriors?",
-        options: ["2023", "2024", "2025", "2026"],
-        correct: 2
-      },
-      {
-        question: "What shoe brand does Curry represent?",
-        options: ["Nike", "Adidas", "Under Armour", "Puma"],
-        correct: 2
-      }
+    const quizBank = [
+      { question: "How many three-pointers did Curry make in his single-game record?", options: ["10", "12", "13", "14"], correct: 2 },
+      { question: "Which team did the Warriors beat in the 2015 NBA Finals?", options: ["Cleveland Cavaliers", "Miami Heat", "Toronto Raptors", "Boston Celtics"], correct: 0 },
+      { question: "What jersey number does Stephen Curry wear?", options: ["23", "30", "35", "11"], correct: 1 },
+      { question: "In what year did Curry surpass Ray Allen's all-time three-pointer record?", options: ["2020", "2021", "2022", "2023"], correct: 1 },
+      { question: "How many MVP awards does Stephen Curry have?", options: ["1", "2", "3", "4"], correct: 1 },
+      { question: "Which college did Curry attend?", options: ["Duke University", "Davidson College", "North Carolina", "UCLA"], correct: 1 },
+      { question: "What is Curry's career three-point percentage?", options: ["38.5%", "40.2%", "42.7%", "45.1%"], correct: 2 },
+      { question: "How many NBA Championships has Curry won?", options: ["2", "3", "4", "5"], correct: 2 },
+      { question: "What shoe brand does Curry represent?", options: ["Nike", "Adidas", "Under Armour", "Puma"], correct: 2 },
+      { question: "Which Warriors teammate was famously part of the Splash Brothers duo?", options: ["Klay Thompson", "Draymond Green", "Andrew Wiggins", "Jordan Poole"], correct: 0 },
+      { question: "What is Charlotte's nickname for Curry?", options: ["Chef", "Shooting Guard God", "Baby-faced Assassin", "The Closer"], correct: 2 },
+      { question: "Which year did Curry win his first NBA MVP award?", options: ["2014", "2015", "2016", "2017"], correct: 1 },
+      { question: "Which franchise did Curry lead to a 73-win season?", options: ["Golden State Warriors", "San Antonio Spurs", "Boston Celtics", "Los Angeles Lakers"], correct: 0 },
+      { question: "How many All-Star selections does Curry have?", options: ["7", "8", "9", "10"], correct: 2 },
+      { question: "Which of these is Curry's first name?", options: ["Allen", "Myles", "Wardell", "Kevin"], correct: 2 },
+      { question: "What event did Curry win in 2024?", options: ["Olympic Gold Medal", "NBA Finals MVP", "3-Point Contest", "All-Star Game MVP"], correct: 0 },
+      { question: "Which city is Curry known for playing in?", options: ["New Orleans", "Oakland", "San Francisco", "Boston"], correct: 1 },
+      { question: "Who is Curry's wife?", options: ["Ayesha", "Sloane", "Maya", "Kylie"], correct: 0 },
+      { question: "What foundation is Curry closely associated with?", options: ["Eat. Learn. Play.", "Dreams for All", "HOPE Foundation", "RCU Works"], correct: 0 },
+      { question: "How many points did Curry score in his 13 three-pointer game?", options: ["27", "32", "35", "42"], correct: 3 },
+      { question: "How many Warriors championships did Curry win before 2022?", options: ["2", "3", "4", "5"], correct: 1 },
+      { question: "Which player did Curry pass to become the all-time 3-point leader?", options: ["Klay Thompson", "Reggie Miller", "Ray Allen", "James Harden"], correct: 2 },
+      { question: "What is the name of Curry's signature line of shoes?", options: ["B-Easy", "Under Armour Curry", "Chef 1", "Baller"], correct: 1 },
+      { question: "What phrase is Curry famous for during a hot shooting night?", options: ["This is my house", "Light it up", "Night night", "Chef's special"], correct: 3 }
     ];
 
+    const spicyBank = [
+      { question: "If Curry gets hot, he can bury a shot from where?", options: ["Half-court", "The logo", "The tunnel", "From the backboard"], correct: 1 },
+      { question: "Which move is Curry most famous for creating chaos on defense?", options: ["The crossover", "The shimmy", "The fadeaway", "The euro-step"], correct: 1 },
+      { question: "What does Curry do when defenders sag off him?", options: ["Dribble to the rim", "Rise from deep", "Pass it to the crowd", "Back down in the paint"], correct: 1 },
+      { question: "Which phrase best fits Curry when he starts cooking?", options: ["He is on fire", "He is in a slump", "He is sleeping", "He is checking out"], correct: 0 },
+      { question: "What does Curry's deep range make defenders do?", options: ["Drop back", "Play zone all game", "Leave the building", "Ignore him"], correct: 0 },
+      { question: "Which skill makes Curry impossible to guard in space?", options: ["His three-point range", "His block", "His rebounding", "His free throw style"], correct: 0 },
+      { question: "What kind of shot is Curry known for when the clock is winding down?", options: ["The clutch triple", "The alley-oop", "The hook shot", "The full-court pass"], correct: 0 },
+      { question: "Which of these is most Curry-like?", options: ["A logo three", "A one-handed dunk", "A 5-step layup", "A blocked shot"], correct: 0 }
+    ];
+
+    let quizQuestions = [];
     let currentQuestionIndex = 0;
     let userAnswers = [];
-    let quizStarted = false;
+    let spicyQuestion = null;
+
+    function buildQuizRound() {
+      const shuffled = [...quizBank].sort(() => Math.random() - 0.5);
+      return shuffled.slice(0, 10);
+    }
+
+    function getSpicyQuestion() {
+      const randomIndex = Math.floor(Math.random() * spicyBank.length);
+      return spicyBank[randomIndex];
+    }
 
     function initQuiz() {
+      quizQuestions = buildQuizRound();
       currentQuestionIndex = 0;
       userAnswers = [];
-      quizStarted = true;
       document.getElementById("quizContainer").style.display = "block";
       document.getElementById("quizResults").style.display = "none";
+      document.getElementById("currentQuestion").textContent = currentQuestionIndex + 1;
       displayQuestion();
     }
 
@@ -980,12 +1005,14 @@
         correct: index === question.correct
       });
 
-      // Show selected and correct answer
       document.querySelectorAll(".quiz-option").forEach(el => el.style.pointerEvents = "none");
       document.getElementById(`option-${index}`).classList.add(index === question.correct ? "correct" : "incorrect");
       
       if (index !== question.correct) {
-        document.getElementById(`option-${question.correct}`).classList.add("correct");
+        const correctElement = document.getElementById(`option-${question.correct}`);
+        if (correctElement) {
+          correctElement.classList.add("correct");
+        }
       }
 
       document.getElementById("nextBtn").style.display = "inline-block";
@@ -1025,7 +1052,7 @@
         message = "🔄 Don't worry! Take the quiz again and improve your score!";
       }
 
-      let resultsHTML = `
+      const resultsHTML = `
         <div class="quiz-results">
           <h3>🏆 QUIZ RESULTS 🏆</h3>
           <div class="quiz-score ${scoreClass}">${score}%</div>
@@ -1035,14 +1062,43 @@
         </div>
       `;
 
-      document.getElementById("quizResults").innerHTML = resultsHTML;
-      document.getElementById("quizResults").style.display = "block";
+      const resultsContainer = document.getElementById("quizResults");
+      resultsContainer.innerHTML = resultsHTML;
+      resultsContainer.style.display = "block";
+
+      showSpicyQuestion();
+    }
+
+    function showSpicyQuestion() {
+      spicyQuestion = getSpicyQuestion();
+      const resultsContainer = document.getElementById("quizResults");
+      const spicyHTML = `
+        <div class="spicy-round">
+          <h4>🔥 Spicy Bonus Question</h4>
+          <div><strong>${spicyQuestion.question}</strong></div>
+          <div class="quiz-options" style="margin-top: 12px;">
+            ${spicyQuestion.options.map((option, index) => `
+              <div class="quiz-option" id="spicy-option-${index}">${String.fromCharCode(65 + index)}) ${option}</div>
+            `).join('')}
+          </div>
+          <button class="btn" onclick="revealSpicyAnswer()" style="margin-top: 8px;">Reveal Answer</button>
+          <button class="btn btn-secondary" onclick="showSpicyQuestion()" style="margin-top: 8px;">New Spicy Question</button>
+          <div id="spicyAnswer" class="spicy-answer" style="display:none;">Answer: ${spicyQuestion.options[spicyQuestion.correct]}</div>
+        </div>
+      `;
+      resultsContainer.insertAdjacentHTML('beforeend', spicyHTML);
+    }
+
+    function revealSpicyAnswer() {
+      const answerBox = document.getElementById("spicyAnswer");
+      if (answerBox) {
+        answerBox.style.display = "block";
+      }
     }
 
     function resetQuiz() {
       currentQuestionIndex = 0;
       userAnswers = [];
-      quizStarted = false;
       document.getElementById("quizContainer").style.display = "block";
       document.getElementById("quizResults").style.display = "none";
       document.getElementById("quizContent").innerHTML = `
@@ -1126,7 +1182,6 @@
         // Update progress bar (current game vs Curry avg)
         let currentPercent = 0;
         if (trackerData.currentGame > 0) {
-            // Assuming ~10 attempts per game as baseline
             currentPercent = Math.min(100, (trackerData.currentGame / (CURRY_3PT_PERCENTAGE / 10)).toFixed(1));
         }
         document.getElementById("yourPercent").innerText = currentPercent + "%";
@@ -1135,7 +1190,7 @@
         // Comparison
         let comparisonEl = document.getElementById("comparisonResult");
         if (trackerData.currentGame > 0) {
-            const curryBaseline = 5; // Curry avg ~5 threes per game
+            const curryBaseline = 5;
             if (trackerData.currentGame > curryBaseline) {
                 comparisonEl.innerHTML = `<p class="comparison-text better">🔥 Heating up! Better than Curry's typical game!</p>`;
             } else if (trackerData.currentGame === curryBaseline) {
@@ -1177,7 +1232,6 @@
     // ===== AUTO-REFRESH NEWS (EXPANDED) =====
     function refreshNews() {
       const updates = [
-        // Training & Practice
         "Curry working on new off-ball movement drills.",
         "Steph spotted training with rookies after practice.",
         "Curry fine-tuning his handle and footwork.",
@@ -1186,66 +1240,48 @@
         "Warriors staff: Steph's conditioning is elite this season.",
         "Curry perfecting his catch-and-shoot mechanics.",
         "Steph running advanced footwork drills with trainers.",
-        
-        // Brand & Business
         "New Curry Brand shoes rumored for release.",
         "Curry Brand announces limited-edition collaboration.",
         "Stephen Curry signature shoe hits $1 billion in sales.",
         "Curry extends partnership with Under Armour through 2030.",
         "New Curry Brand apparel line coming next month.",
-        
-        // Team & Games
         "Warriors preparing new offensive sets for Curry.",
         "Curry locked in from deep during scrimmage.",
         "Stephen Curry officially agreed to a two-year, $116 million contract extension.",
         "Steph hits 10 threes in preseason prep game.",
         "Warriors' new plays maximize Curry's spacing advantage.",
         "Curry dominates in Warriors' first exhibition game.",
-        
-        // Charity & Community
         "Curry hosting charity event with Eat. Learn. Play.",
         "Steph donates $1M to Oakland youth basketball programs.",
         "Curry Foundation launches new STEM initiative.",
         "Stephen Curry visits children's hospital, lifts spirits.",
         "Curry leads Warriors community service day.",
-        
-        // Records & Achievements
         "Curry inches closer to 4,000 career threes made.",
         "Steph ranks #1 in all-time three-pointers — 4,087!",
         "Curry's deep range extends beyond NBA arc.",
         "Steph sets new record for most 40+ point games.",
         "Curry becomes first player to hit 5,000 three-pointers.",
-        
-        // Game Performances
         "40-point performance with 8 threes in Warriors victory.",
         "Behind-the-back dime to Klay on transition break.",
         "Half-court warm-up shots still automatic.",
         "Curry hits the dagger with 2 seconds left.",
         "Steph puts on 3-point clinic: 12 made threes.",
         "Curry's clutch shooting leads Warriors to overtime win.",
-        
-        // Personal & Family
         "Curry Family Foundation grants scholarships to 100 students.",
         "Steph celebrates daughter Riley's basketball progress.",
         "Ayesha & Steph announce new business venture.",
         "Curry family donates to local Bay Area charities.",
-        
-        // Analytics & Stats
         "Curry's +/- rating leads league at +18.5.",
         "Steph shooting 50-40-90 club standards this season.",
         "Curry's usage rate down but efficiency up 5%.",
         "Advanced metrics: Curry is MVP candidate.",
-        
-        // International & Events
         "Curry preparing for upcoming international exhibition.",
         "Steph headline act at All-Star Weekend 3PT Contest.",
         "Curry invited to participate in global basketball summit.",
-        
-        // Highlights & Moments
         "Curry hits 3-pointer from logo — crowd goes wild!",
         "Steph puts defense in spin cycle with ankle-breaker.",
         "Curry's shimmy celebration trending on social media.",
-        "Behind-the-back three from Steph is viral sensation.",
+        "Behind-the-back three from Steph is viral sensation."
       ];
       document.getElementById("liveNews").innerText =
         updates[Math.floor(Math.random() * updates.length)];
